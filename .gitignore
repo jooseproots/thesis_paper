@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # LaTeX intermediate and output files
 *.aux
 *.bbl
@@ -35,7 +34,7 @@
 *.pdf
 
 # VSCode settings (optional, if project-specific settings are fine to share)
-# .vscode/
+.vscode/
 
 # OS/Editor/System stuff
 .DS_Store
@@ -54,61 +53,4 @@ latexmkrc
 # Logs or custom temp dirs (if applicable)
 tmp/
 build/
-=======
-# LaTeX intermediate and output files
-*.aux
-*.bbl
-*.blg
-*.brf
-*.fls
-*.fdb_latexmk
-*.log
-*.out
-*.toc
-*.synctex.gz
-*.lof
-*.lot
-*.nav
-*.snm
-*.vrb
-*.xdv
-
-# LaTeX specific temp files
-*.acn
-*.acr
-*.alg
-*.glg
-*.glo
-*.gls
-*.ist
-*.loa
-*.dvi
-*.ilg
-*.ind
-*.inx
-
-# PDFs (optional, if you don't want to track output)
-*.pdf
-
-# VSCode settings (optional, if project-specific settings are fine to share)
-# .vscode/
-
-# OS/Editor/System stuff
-.DS_Store
-Thumbs.db
-
-# Backup files
-*~
-*.bak
-*.sav
-*.swp
-*.swo
-
-# latexmk specific
-latexmkrc
-
-# Logs or custom temp dirs (if applicable)
-tmp/
-build/
->>>>>>> 4da827365643f87b713b05c889355b19d755f226
 output/
