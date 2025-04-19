@@ -29,5 +29,3 @@ This will generate `NATO_thesis.pdf` along with various auxiliary files.
 - `*.fls` - File list generated during compilation
 - `*.log` - Log file containing compilation information
 - `*.synctex.gz` - SyncTeX file for source-PDF synchronization
-
-# Test changes
