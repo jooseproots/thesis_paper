@@ -5,11 +5,19 @@
 \usepackage{titling}
 \usepackage{parskip}
 \usepackage{lmodern}
+\usepackage{titlesec}
+
+\doublespacing
 
 \begin{document}
 
+\setlength{\parindent}{0.5in}     % APA indent
+\setlength{\parskip}{0pt}         % No space between paragraphs
+
 % Title Page
 \begin{titlepage}
+\begin{singlespace}
+    
     \centering
     \vspace*{1cm}
 
@@ -44,6 +52,32 @@
     {\Large Date: June 2025 \par}
     \vfill
 
+\end{singlespace}
 \end{titlepage}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries} % formatting for the title
+  {}                          % no label ("Chapter X")
+  {0pt}                       % spacing between label and title
+  {\Huge}                    % code before the title
+
+\titlespacing{\chapter}
+  {0pt}    % left margin
+  {-2.5\baselineskip}    % space before (was likely ~50pt by default)
+  {12pt}   % space after
+
+
+% Chapters
+\include{chapters/abstract}
+\include{chapters/introduction}
+\include{chapters/literature_review}
+
+% Bibliography
+\newgeometry{top=1.75in}  % Adjust the top margin for the bibliography page
+
+\bibliographystyle{apalike}
+\bibliography{bibliography}
+
+\restoregeometry  % Revert to the original margin settings
 
 \end{document}
