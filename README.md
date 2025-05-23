@@ -11,7 +11,7 @@ This repository contains my thesis project written in LaTeX.
 
 ## Building the Document
 
-To build the PDF from the LaTeX source, you'll need a LaTeX distribution installed (such as TeX Live or MiKTeX). The project uses `latexmk` for building.
+To build the PDF from the LaTeX source, you'll need a LaTeX distribution installed (such as TeX Live or MiKTeX). The project uses `latexmk` for building, `biblatex`/`biber` for references.
 
 You can build the document using:
 
