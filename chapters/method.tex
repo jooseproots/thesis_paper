@@ -1,4 +1,50 @@
 \chapter{Methodology}
 
-Describe the project work step-by-step. If applicable 
-this section will follow a framework such as CRISP-DM.
+\section{Data Preparation}
+
+The data preparation process involved several steps to create a clean and structured 
+dataset that could be used for analysis. The study combines military and socioeconomic 
+data for NATO countries across multiple years. Data was collected from various sources,
+transformed into a consistent format and merged into a single dataset.
+
+First, the military personnel and defence 
+spending data were aquired from different issues of \textcite{noauthor_military_balance_nodate} 
+as each issue contained data for a specific year. Columns with relevant information were 
+selected from each table and renamed to ensure consistency across the dataset. A list of 
+countries of interest was created to filter only NATO member countries from the tables.
+Data types were then adjusted so that numerical values were presented in a consistent format.
+The tables from different years were then merged into a single long-format table, where
+each row represented data for a specific country in a specific year as this format is 
+suitable for panel data analysis.
+
+Next, the unemployment rate, GDP and educational attainment data were collected from 
+\textcite{noauthor_world_bank_nodate}. These datasets included data across multiple years, 
+so the columns with relevant years were selected and renamed for consistency. Again a 
+list of countries was used to filter out only NATO countries. The educational attainment 
+data had missing values that were filled using interpolation from the previous and next 
+years. The tables were then also transformed into a long format, so that they could be 
+merged with the military personnel and defence spending data.
+
+Finally, in order to ensure that the data is comparable, the effect of inflation was removed 
+from columns with monetary values by adjusting them to 2015 USD using the Consumer Price 
+Index (CPI) of different years. The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
+The military and economic data tables were then merged into a final dataset and additional 
+columns for year-on-year changes for GDP per capita, defence spending per capita  
+and defence budget as a percentage of GDP were calculated using the existing data.
+
+\section{Analysis}
+
+The analysis consisted of a preliminary correlation analysis and a regression analysis. ...
+
+The correlation analysis was performed on a subset of the data to identify potential 
+relationships between socioeconomic indicators and the number of active military 
+personnel. The subset of data included values from the year 2023 as it was the latest
+year with complete data available. A log transformation was applied to variables 
+population, GDP, GDP per capita, defence spending per capita and the dependent variable 
+active military personnel to mitigate the effect of skewness and to more efficiently 
+capture the multiplicative relationships between variables.
+The Pearson correlation coefficient was calculated along with the p-values to 
+determine the statistical significance of the correlation values.
+
+The regression analysis used a fixed-effects regression model to control for heterogeneity
+across countries \parencite{backstrom_are_2019}. 
