@@ -2,6 +2,34 @@
 
 \section{Data Preparation}
 
+\begin{table}[ht]
+\small
+\caption{Variable Descriptions}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabularx}{\textwidth}{>{\hsize=1\hsize\raggedright\arraybackslash}X 
+                            >{\hsize=1.75\hsize\raggedright\arraybackslash}X 
+                            >{\raggedright\arraybackslash}X 
+                            >{\hsize=0.6\hsize\raggedright\arraybackslash}X 
+                            >{\hsize=0.6\hsize\raggedright\arraybackslash}X}
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Source} & \textbf{Unit} & \textbf{Transformation} \\
+\midrule
+Active armed forces per capita & Number of active military personnel per capita & Military Balance, World Bank & per capita & log() \\
+Unemployment rate & National unemployment rate & World Bank & \% & none \\
+Secondary education rate & Proportion of population with secondary education & World Bank & \% & none \\
+GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
+Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
+Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
+GDP per capita change & Annual percentage change in GDP per capita & World Bank (own calculation) & \% & none \\
+Defence spending change & Annual percentage change in defence spending per capita & Military Balance (own calculation) & \% & none \\
+Defence spending \% GDP change & Annual percentage change in defence spending as \% of GDP & Military Balance (own calculation) & \% & none \\
+\bottomrule
+\end{tabularx}
+}
+\label{tab:variables}
+\end{table}
+
 The data preparation process involved several steps to create a clean and structured 
 dataset that could be used for analysis. The study combines military and socioeconomic 
 data for NATO countries across multiple years. Data was collected from various sources,
