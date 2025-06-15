@@ -23,9 +23,9 @@ Secondary education rate & Proportion of population with secondary education & W
 GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
 Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
 Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
-GDP per capita change & Annual percentage change in GDP per capita & World Bank (own calculation) & \% & none \\
-Defence spending change & Annual percentage change in defence spending per capita & Military Balance (own calculation) & \% & none \\
-Defence spending \% GDP change & Annual percentage change in defence spending as \% of GDP & Military Balance (own calculation) & \% & none \\
+GDP per capita \% change & Annual percentage change in GDP per capita & World Bank (own calculation) & \% & none \\
+Defence spending per capita \% change & Annual percentage change in defence spending per capita & Military Balance (own calculation) & \% & none \\
+Defence spending \% GDP \% change & Annual percentage change in defence spending as \% of GDP & Military Balance (own calculation) & \% & none \\
 \bottomrule
 \end{tabularx}
 }
@@ -62,19 +62,51 @@ The military and economic data tables were then merged into a final dataset and 
 columns for year-on-year changes for GDP per capita, defence spending per capita  
 and defence budget as a percentage of GDP were calculated using the existing data.
 
+!!!!! Log transformations
+
 \section{Analysis}
 
-The analysis consisted of a preliminary correlation analysis and a regression analysis. ...
+The analysis consisted of a correlation and multicollinearity analysis and a regression analysis. ...
 
-The correlation analysis was performed on a subset of the data to identify potential 
-relationships between socioeconomic indicators and the number of active military 
-personnel. The subset of data included values from the year 2023 as it was the latest
-year with complete data available. A log transformation was applied to variables 
-population, GDP, GDP per capita, defence spending per capita and the dependent variable 
-active military personnel to mitigate the effect of skewness and to more efficiently 
-capture the multiplicative relationships between variables.
-The Pearson correlation coefficient was calculated along with the p-values to 
-determine the statistical significance of the correlation values.
+The correlation and multicollinearity analysis were performed on demeaned data, consistent 
+with the fixed effects regression. The fixed effects model relies on within-country variation 
+over time by subtracting country-specific means, so the data was transformed similarly. For 
+each observation, the mean of the variable across all year of the corresponding country was 
+subtracted from the original value. This demeaning process makes the data comparable across 
+countries as the variables only reflect deviations from each country's average. 
 
-The regression analysis used a fixed-effects regression model to control for heterogeneity
-across countries \parencite{backstrom_are_2019}. 
+The correlation analysis involved calculating the Pearson correlation coefficient for each 
+of variables, resulting in a correlation matrix. The correlation matrix was used to assess the 
+direction and strength of bivariate relationships.
+Variance Inflation Factors (VIF) were calculated for the independent variables to 
+assess the potential presence of multicollinearity. VIF values indicate how much variance
+of a coefficient estimate is inflated due to relationships with other predictors.
+
+The regression analysis used a fixed-effects panel regression model to control for time-invariant 
+heterogeneity across countries \parencite{backstrom_are_2019}. This means that it was not 
+neccessary to 
+use the demeaned data, because the model already takes differences between entities into account.
+A fixed effects regression isolates the within-country variation over time, enabling more accurate 
+estimation of the conditional effects of economic factors on military personnel levels.
+In other words, by introducing country fixed effects, the model is estimated on changes within 
+countries, rather than between countries. (possibly reference backstrom) 
+The following model was estimated:
+\begin{align*}
+log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it} 
++ \beta_2 \cdot Education_{it} \\
+&\quad + \beta_3 \cdot log(GDPPerCap_{it}) 
++ \beta_4 \cdot log(DefSpendingPerCap_{it}) \\
+&\quad + \beta_5 \cdot DefSpending\%GDP_{it} 
++ \beta_6 \cdot \Delta GDPPerCap_{it} \\
+&\quad + \beta_7 \cdot \Delta DefSpendingPerCap_{it} 
++ \beta_8 \cdot \Delta DefSpending\%GDP_{it} \\
+&\quad + \alpha_i + \varepsilon_{it}
+\end{align*}
+where $i$ denotes the country, $t$ the time, $\Delta$ the annual change and 
+$a_i$ is the country-specific fixed effect.
+
+A sensitivity analsis was also conducted to determine whether to include interpolated and filled educational 
+attainment data in the regression model. Three regression models were created: Model A with 
+complete data, including observations with interpolated educational attainment values, Model B 
+that excluded rows with interpolated and filled values and Model C with complete data and an additional 
+dummy variable indicating whether the education data was interpolated or not.
