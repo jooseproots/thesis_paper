@@ -19,7 +19,7 @@
 \midrule
 Active armed forces per capita & Number of active military personnel per capita & Military Balance, World Bank & per capita & log() \\
 Unemployment rate & National unemployment rate & World Bank & \% & none \\
-Secondary education rate & Proportion of population with secondary education & World Bank & \% & none \\
+Secondary education rate & Proportion of population (25+) with secondary education & World Bank & \% & none \\
 GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
 Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
 Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
@@ -90,7 +90,7 @@ A fixed effects regression isolates the within-country variation over time, enab
 estimation of the conditional effects of economic factors on military personnel levels.
 In other words, by introducing country fixed effects, the model is estimated on changes within 
 countries, rather than between countries. (possibly reference backstrom) 
-The following model was estimated:
+The following equation was used to estimate the base model:
 \begin{align*}
 log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it} 
 + \beta_2 \cdot Education_{it} \\

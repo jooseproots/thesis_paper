@@ -223,4 +223,82 @@ slightly better, which again supported the decision to choose Model A.
 
 \subsection{Fixed-Effects regression}
 
-!!!!!! WRITE
+\renewcommand{\arraystretch}{1.3}
+
+The final fixed effects regression model had a 0.12 within-entity $R^2$, meaning it explained 
+approximately 12\% of within-country variation in the logarithm of active armed forces per capita.
+The F-statistic for the model was $F(6, 247)=5.6143, p<0.001$, showing joint significance of the independent variables.
+In other words, the model better explains the variation in the dependent variable than a model with 
+only country-specific intersepts and no independent variables. 
+
+% Model Summary Table
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{PanelOLS Estimation Summary}
+\label{tab:panelols_summary}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+\textbf{Dep. Variable} & \texttt{Active Armed Forces per capita} \\
+\textbf{Estimator} & PanelOLS \\
+\textbf{No. Observations} & 285 \\
+\textbf{Entities} & 32 \\
+\textbf{Time Periods} & 9 \\
+\textbf{Cov. Estimator} & Unadjusted \\
+\midrule
+\textbf{R-squared (Within)} & 0.1200 \\
+\textbf{Log-likelihood} & 259.03 \\
+\textbf{F-statistic (robust)} & 5.6143 \\
+\textbf{P-value (F-stat)} & 0.0000 \\
+\textbf{Distribution} & F(6, 247) \\
+\midrule
+\textbf{F-test for Poolability} & 70.021 \\
+\textbf{P-value} & 0.0000 \\
+\textbf{Distribution} & F(31, 247) \\
+\textbf{Included effects} & Entity \\
+\bottomrule
+\end{tabularx}
+\end{threeparttable}
+\label{tab:model_summary}
+\end{table}
+
+As for the predictors, unemployment rate proved to be statistically insignificant $(-0.0013, p=0.7758)$, 
+indicating that it may not substancially affect military labour supply in the sampled country and year subset.
+Secondary education attainment rate exhibited a significant modest negative relationship $(-0.0083, p=0.0001)$ 
+with the dependent variable, meaning for every 1 percentage point increase in secondary education 
+attainment rate, the active military size per capita decreased by approximately 0.83\%.
+The logarithm of GDP per capita had a positive relationship $(0.2376, p=0.0867)$ with armed forces per capita 
+although was not significant at the 5\% level. Defence spending's share of GDP however exhibited 
+a significant and positive relationship $(0.0846, p=0.0053)$, meaning for each percentage point increase of defence spending 
+proporion in GDP, active military size per capita increased approximately 8.46\% (provide example!!!).
+The annual change in GDP per capita was found to be statistically insignificant $(-0.0009, p=0.6437)$,
+indicating that short term economic changes may not influence active military personnel size.
+Defence budget percentage of GDP annual changes however proved to be significant with a slight negative effect 
+on active armed forces numbers $(-0.0013, p=0.0082)$, meaning that a percentage point increase in defence 
+budget's proportion of GDP approximately decreased active armed forces size by 0.13\%. The direction of 
+this effect is opposite of defence spending's share of GDP, indicating a higher baseline proportion of defence 
+spending in GDP may signal long-term commitments to maintaining a large military, while short term 
+changes in the proportion could imply for example investments in modernization, technology or other 
+assets, not neccessarily increasing personnel.
+
+% Parameter Estimates Table
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Parameter Estimates}
+\label{tab:parameter_estimates}
+\begin{tabularx}{\textwidth}{@{}Xrrrrrr@{}}
+\toprule
+\textbf{Variable} & \textbf{Coef.} & \textbf{Std. Err.} & \textbf{t-stat} & \textbf{p-value} & \textbf{CI Lower} & \textbf{CI Upper} \\
+\midrule
+Unemployment rate & -0.0013 & 0.0047 & -0.2851 & 0.7758 & -0.0106 & 0.0079 \\
+Secondary education attainment rate & -0.0083 & 0.0020 & -4.1187 & 0.0001 & -0.0122 & -0.0043 \\
+GDP per capita & 0.2376 & 0.1381 & 1.7202 & 0.0867 & -0.0345 & 0.5097 \\
+Def. budget \% GDP & 0.0846 & 0.0301 & 2.8125 & 0.0053 & 0.0253 & 0.1438 \\
+GDP per capita \% change & -0.0009 & 0.0020 & -0.4631 & 0.6437 & -0.0048 & 0.0029 \\
+Def. budget \% GDP \% change & -0.0013 & 0.0005 & -2.6646 & 0.0082 & -0.0022 & -0.0003 \\
+\bottomrule
+\end{tabularx}
+\end{threeparttable}
+\label{tab:final_model}
+\end{table}
