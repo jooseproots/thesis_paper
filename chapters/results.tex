@@ -173,10 +173,10 @@ F-statistic (robust) & $F(8,245)=7.97, p<0.001$ & $F(6,247)=5.61, p<0.001$ \\
 \subsection{Sensitivity Analysis}
 
 Three models were estimates to analize the effect of interpolated and filled educational attainment values.
-The secondary educational attainment rate coefficents stayed consistently negative and statistically
-significant across models. Additionally, other coefficients also remained with similar magnitudes 
-and significances. This means that using interpolated values does not drastically distort the 
-relationship with the target variable. This is suppoerted bu the fact that the dummy variable for 
+The secondary educational attainment rate coefficients stayed consistently negative and statistically
+significant across models. Additionally, other coefficients also remained with similar magnitudes. 
+This means that using interpolated values does not meaningfully distort the 
+relationship with the target variable. This is suppoerted by the fact that the dummy variable for 
 interpolated values in Model C is not statistically significant, suggesting no systematic 
 differences in observations, where the education rate was interpolated or filled in. 
 
@@ -213,21 +213,24 @@ F-statistic (robust) & $F(6,247)=5.6143, p<0.001$ & $F(6,224)=4.7800, p<0.001$ &
 \label{tab:sensitivity}
 \end{table}
 
-Based on these results, Model A with full data including interpolated and filled values was chosen 
+Based on these results, Model C with full data including interpolated and filled values and a dummy 
+variable flagging imputed values was chosen
 as the prefferred regression model. While imputed data could introduce noise or subtle bias
 into regression estimates, this did not appear to be the case this time as the interpolation dummy 
-variable, used to control for the influence of imputed values, was found to be statistically 
-insignificant. Additionally, Model A had a marginally larger within country 
-$R^2$, than Model B (0.1200 vs 0.1135), meaning it explained the variation within countries 
-slightly better, which again supported the decision to choose Model A.
+variable was found to be statistically insignificant. 
+Nevertheless, Model C was adopted as it retains full sample size while explicitly controlling 
+for data quality variation, thereby increasing the robustness of the model.
+Additionally, Model C had a marginally larger within country 
+$R^2$, than Model A (0.1247 vs 0.1200), meaning it explained the variation within countries 
+slightly better, which again supported the decision to choose Model C.
 
 \subsection{Fixed-Effects regression}
 
 \renewcommand{\arraystretch}{1.3}
 
-The final fixed effects regression model had a 0.12 within-entity $R^2$, meaning it explained 
-approximately 12\% of within-country variation in the logarithm of active armed forces per capita.
-The F-statistic for the model was $F(6, 247)=5.6143, p<0.001$, showing joint significance of the independent variables.
+The final fixed effects regression model had a 0.1247 within-entity $R^2$, meaning it explained 
+approximately 12.47\% of within-country variation in the logarithm of active armed forces per capita.
+The F-statistic for the model was $F(7, 246)=5.0059, p<0.001$, showing joint significance of the independent variables.
 In other words, the model better explains the variation in the dependent variable than a model with 
 only country-specific intersepts and no independent variables. 
 
@@ -246,15 +249,15 @@ only country-specific intersepts and no independent variables.
 \textbf{Time Periods} & 9 \\
 \textbf{Cov. Estimator} & Unadjusted \\
 \midrule
-\textbf{R-squared (Within)} & 0.1200 \\
-\textbf{Log-likelihood} & 259.03 \\
-\textbf{F-statistic (robust)} & 5.6143 \\
+\textbf{R-squared (Within)} & 0.1247 \\
+\textbf{Log-likelihood} & 259.79 \\
+\textbf{F-statistic (robust)} & 5.0059 \\
 \textbf{P-value (F-stat)} & 0.0000 \\
-\textbf{Distribution} & F(6, 247) \\
+\textbf{Distribution} & F(7, 246) \\
 \midrule
-\textbf{F-test for Poolability} & 70.021 \\
+\textbf{F-test for Poolability} & 70.146 \\
 \textbf{P-value} & 0.0000 \\
-\textbf{Distribution} & F(31, 247) \\
+\textbf{Distribution} & F(31, 246) \\
 \textbf{Included effects} & Entity \\
 \bottomrule
 \end{tabularx}
@@ -262,24 +265,41 @@ only country-specific intersepts and no independent variables.
 \label{tab:model_summary}
 \end{table}
 
-As for the predictors, unemployment rate proved to be statistically insignificant $(-0.0013, p=0.7758)$, 
+As for the predictors, unemployment rate proved to be statistically insignificant $(-0.0011, p=0.8205)$, 
 indicating that it may not substancially affect military labour supply in the sampled country and year subset.
-Secondary education attainment rate exhibited a significant modest negative relationship $(-0.0083, p=0.0001)$ 
+Secondary education attainment rate exhibited a significant modest negative relationship $(-0.0084, p<0.0001)$ 
 with the dependent variable, meaning for every 1 percentage point increase in secondary education 
-attainment rate, the active military size per capita decreased by approximately 0.83\%.
-The logarithm of GDP per capita had a positive relationship $(0.2376, p=0.0867)$ with armed forces per capita 
-although was not significant at the 5\% level. Defence spending's share of GDP however exhibited 
-a significant and positive relationship $(0.0846, p=0.0053)$, meaning for each percentage point increase of defence spending 
-proporion in GDP, active military size per capita increased approximately 8.46\% (provide example!!!).
-The annual change in GDP per capita was found to be statistically insignificant $(-0.0009, p=0.6437)$,
-indicating that short term economic changes may not influence active military personnel size.
-Defence budget percentage of GDP annual changes however proved to be significant with a slight negative effect 
-on active armed forces numbers $(-0.0013, p=0.0082)$, meaning that a percentage point increase in defence 
-budget's proportion of GDP approximately decreased active armed forces size by 0.13\%. The direction of 
+attainment rate, the active military size per capita decreased by approximately 0.84\%.
+This negative relationship could be caused my multiple factors, for example more educated individuals 
+may consider their opportunities better in the civilian sector, while it could also be that countries 
+with higher educational attainment rates have more technologically advanced armed forces, which require 
+less manpower.
+
+The logarithm of GDP per capita had a positive and significant relationship $(0.2878, p=0.0480)$ 
+with armed forces per capita. This can be interpreted as 1\% increase in GDP per capita being 
+associated with approximately 0.29\% increase in armed forces per capita. This could be explained 
+by wealthier countries having more resources for maintaining a larger active military force.
+The annual change in GDP per capita was found to be 
+statistically insignificant $(-0.0014, p=0.4804)$,
+indicating that short term economic changes might not influence active military personnel size. 
+
+Defence spending's share of GDP however exhibited 
+a significant and positive relationship $(0.0882, p=0.0038)$, meaning for each percentage point increase in defence spending's 
+proportion of GDP, active military size per capita increased approximately 8.82\%.
+The annual changes in defence spending's proportion of GDP also proved to be significant with a slight negative effect 
+on active armed forces numbers $(-0.0013, p=0.0073)$, meaning that a percentage point increase in defence 
+budget's share of GDP approximately decreased active armed forces size by 0.13\%. The direction of 
 this effect is opposite of defence spending's share of GDP, indicating a higher baseline proportion of defence 
 spending in GDP may signal long-term commitments to maintaining a large military, while short term 
 changes in the proportion could imply for example investments in modernization, technology or other 
 assets, not neccessarily increasing personnel.
+
+It is important to note for the interpretation of these coefficients that the dependent variable was 
+active military size per capita, meaning the coefficients reflect relative changes in active military personnel 
+with respect to population size. Assuming a stable population, the reported percentage changes 
+in active military size per capita can also be interpreted as approximate percentage changes in total 
+active military size. However in cases where population can vary notably, the per capita measure provides 
+a more consistent comparison.
 
 % Parameter Estimates Table
 \begin{table}[htbp]
@@ -291,12 +311,13 @@ assets, not neccessarily increasing personnel.
 \toprule
 \textbf{Variable} & \textbf{Coef.} & \textbf{Std. Err.} & \textbf{t-stat} & \textbf{p-value} & \textbf{CI Lower} & \textbf{CI Upper} \\
 \midrule
-Unemployment rate & -0.0013 & 0.0047 & -0.2851 & 0.7758 & -0.0106 & 0.0079 \\
-Secondary education attainment rate & -0.0083 & 0.0020 & -4.1187 & 0.0001 & -0.0122 & -0.0043 \\
-GDP per capita & 0.2376 & 0.1381 & 1.7202 & 0.0867 & -0.0345 & 0.5097 \\
-Def. budget \% GDP & 0.0846 & 0.0301 & 2.8125 & 0.0053 & 0.0253 & 0.1438 \\
-GDP per capita \% change & -0.0009 & 0.0020 & -0.4631 & 0.6437 & -0.0048 & 0.0029 \\
-Def. budget \% GDP \% change & -0.0013 & 0.0005 & -2.6646 & 0.0082 & -0.0022 & -0.0003 \\
+Unemployment rate & -0.0011 & 0.0047 & -0.2272 & 0.8205 & -0.0103 & 0.0082 \\
+Secondary education attainment rate & -0.0084 & 0.0020 & -4.1738 & 0.0000 & -0.0124 & -0.0044 \\
+GDP per capita & 0.2878 & 0.1448 & 1.9872 & 0.0480 & 0.0025 & 0.5730 \\
+Def. budget \% GDP & 0.0882 & 0.0302 & 2.9181 & 0.0038 & 0.0287 & 0.1477 \\
+GDP per capita \% change & -0.0014 & 0.0020 & -0.7067 & 0.4804 & -0.0054 & 0.0025 \\
+Def. budget \% GDP \% change & -0.0013 & 0.0005 & -2.7062 & 0.0073 & -0.0022 & -0.0003 \\
+Education Dummy & -0.0299 & 0.0261 & -1.1460 & 0.2529 & -0.0814 & 0.0215 \\
 \bottomrule
 \end{tabularx}
 \end{threeparttable}

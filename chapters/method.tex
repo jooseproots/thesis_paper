@@ -55,14 +55,19 @@ data had missing values that were filled using interpolation (or backwards/forwa
 years. The tables were then also transformed into a long format, so that they could be 
 merged with the military personnel and defence spending data.
 
+A logarithmic transformation was applied to variables active armed forces per capita, GDP per capita 
+and defence spending per capita. These variables can have skewed, due to disproportionate influence 
+from larger countries, which can have substancially higher values for the variables in question. 
+Logging can mitigate this skewness, stabilize variance and allow for interpretation of the regression 
+coefficients in terms of elasticities. Other variables were not logarithmically transformed as they were 
+expressed as percentages, therefore logging would make interpretation difficult and distort the scales.
+
 Finally, in order to ensure that the data is comparable, the effect of inflation was removed 
 from columns with monetary values by adjusting them to 2015 USD using the Consumer Price 
 Index (CPI) of different years. The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
 The military and economic data tables were then merged into a final dataset and additional 
 columns for year-on-year changes for GDP per capita, defence spending per capita  
 and defence budget as a percentage of GDP were calculated using the existing data.
-
-!!!!! Log transformations
 
 \section{Analysis}
 
