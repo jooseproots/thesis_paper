@@ -18,8 +18,8 @@
 \textbf{Variable} & \textbf{Description} & \textbf{Source} & \textbf{Unit} & \textbf{Transformation} \\
 \midrule
 Active armed forces per capita & Number of active military personnel per capita & Military Balance, World Bank & per capita & log() \\
-Unemployment rate & National unemployment rate & World Bank & \% & none \\
-Secondary education rate & Proportion of population (25+) with secondary education & World Bank & \% & none \\
+Unemployment rate & National unemployment rate & World Bank & \% (0-100) & none \\
+Secondary education rate & Proportion of population (25+) with secondary education & World Bank & \% (0-100) & none \\
 GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
 Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
 Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
@@ -39,20 +39,26 @@ transformed into a consistent format and merged into a single dataset.
 
 First, the military personnel and defence 
 spending data were aquired from different issues of \textcite{noauthor_military_balance_nodate} 
-as each issue contained data for a specific year. Columns with relevant information were 
-selected from each table and renamed to ensure consistency across the dataset. A list of 
-countries of interest was created to filter only NATO member countries from the tables.
-Data types were then adjusted so that numerical values were presented in a consistent format.
+as each issue contained data for a specific year. Data for active armed forces numbers, 
+defence spending per capita and defence spending's share of GDP was
+selected for NATO member countries from each table.
+Data types were then adjusted so that numerical values were presented in a consistent format. (neccessary???)
+In order to ensure that the data is comparable, the effect of inflation was removed 
+from defence spending per capita data by adjusting the values to 2015 USD using the Consumer Price 
+Index (CPI) of different years. The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
 The tables from different years were then merged into a single long-format table, where
-each row represented data for a specific country in a specific year as this format is 
+each row represented observations for a specific country in a specific year as this format is 
 suitable for panel data analysis.
 
-Next, the unemployment rate, GDP and educational attainment data were collected from 
-\textcite{noauthor_world_bank_nodate}. These datasets included data across multiple years, 
-so the columns with relevant years were selected and renamed for consistency. Again a 
-list of countries was used to filter out only NATO countries. The educational attainment 
-data had missing values that were filled using interpolation (or backwards/forwards fill) from the previous and next 
-years. The tables were then also transformed into a long format, so that they could be 
+Next, the unemployment rate, GDP per capita in constant 2015 USD, population and 
+secondary educational attainment data were collected from 
+\textcite{noauthor_world_bank_nodate}. Data was again filtered to include 
+only NATO countries from 2015 to 2023. 
+The educational attainment 
+data had missing values that were handled using linear interpolation, to estimate missing values 
+based on neighboring data, and backward/forward filling for data points at the start or end 
+of the series, which could not be interpolated. The tables were then also transformed into a long format, 
+so that they could be 
 merged with the military personnel and defence spending data.
 
 A logarithmic transformation was applied to variables active armed forces per capita, GDP per capita 
@@ -62,16 +68,74 @@ Logging can mitigate this skewness, stabilize variance and allow for interpretat
 coefficients in terms of elasticities. Other variables were not logarithmically transformed as they were 
 expressed as percentages, therefore logging would make interpretation difficult and distort the scales.
 
-Finally, in order to ensure that the data is comparable, the effect of inflation was removed 
-from columns with monetary values by adjusting them to 2015 USD using the Consumer Price 
-Index (CPI) of different years. The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
-The military and economic data tables were then merged into a final dataset and additional 
-columns for year-on-year changes for GDP per capita, defence spending per capita  
-and defence budget as a percentage of GDP were calculated using the existing data.
+Finally, the military and economic data tables were merged into a complete dataset. 
+The active armed forces per capita column was created using military and population data
+and additional 
+columns for annual changes in GDP per capita, defence spending per capita  
+and defence spending's share of GDP were calculated by finding their percentage changes from 
+the previous year's value.
+
+\section{Data understanding}
+
+Table~\ref{tab:descriptive_stats} reports the descriptive statistics for the variables used.
+The logged dependent variable armed forces per capita showed relatively low variation with a standard 
+deviation of 0.44 and a range of values between -6.55 and -4.30 which could limit the explanatory 
+power of the regression model, however the regression model might still provide insights into 
+smaller changes in active military size per capita.
+
+\begin{table}[htbp]
+\caption{Descriptive statistics of variables}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{l*{9}{>{\centering\arraybackslash}X}}
+\toprule
+ & \rotatebox{90}{\parbox{2.5cm}{Armed Forces per cap.}} 
+ & \rotatebox{90}{\parbox{2.5cm}{GDP per cap.}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. budget per cap.}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Unemploy-\\ment rate}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Secondary education rate}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. budget \% GDP}} 
+ & \rotatebox{90}{\parbox{2.5cm}{GDP per cap. \% change}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. budget per cap. \% change}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. budget \% GDP \% change}} \\
+\midrule
+\textbf{mean} & -5.71 & 7.86 & 74.50 & 10.03 & 5.71 & 1.61 & 2.18 & 4.82 & 4.57 \\
+\textbf{std} & 0.44 & 4.58 & 14.64 & 0.76 & 0.81 & 0.66 & 3.67 & 18.73 & 16.39 \\
+\textbf{min} & -6.55 & 2.02 & 33.60 & 8.28 & 3.44 & 0.35 & -15.21 & -41.71 & -41.03 \\
+\textbf{25\%} & -5.96 & 4.83 & 69.07 & 9.52 & 5.26 & 1.14 & 0.76 & -5.61 & -3.59 \\
+\textbf{50\%} & -5.79 & 6.54 & 77.78 & 9.93 & 5.81 & 1.44 & 2.27 & 1.89 & 1.48 \\
+\textbf{75\%} & -5.46 & 9.41 & 86.00 & 10.70 & 6.29 & 1.98 & 4.37 & 10.16 & 10.67 \\
+\textbf{max} & -4.30 & 26.40 & 95.29 & 11.59 & 7.60 & 3.82 & 13.65 & 100.83 & 109.23 \\
+\bottomrule
+\end{tabularx}
+\label{tab:descriptive_stats}
+\end{table}
+
+Defence spending per capita, its annual change and the annual change in defence spending's 
+share of GDP however showed higher volatility, with standard deviations of 14.64, 18.73 and 
+16.39 respectively. These higher standard deviations could suggest heteroskedacity. In addition 
+to that, in panel data settings, standard errors are ofter correlated within entities (in this case countries), 
+which means assuming independent standard errors could inflate t-statistics and potentially 
+overstate statistical significance in regressions. To account for this, a fixed-effects 
+regression could be estimated using standard errors clustered at the country level.
+
+The use of imputed educational attainment values was also investigated. There were a total 
+of 23 interpolated or filled values across a total of 285 observations. No country had
+more than 2 imputed values in the timeframe. Given the small scale of imputed values, it was 
+unlikely that a strong bias would be introduced. Nevertheless, a sensitivty analysis should 
+be conducted to analyze the effect of imputation more in depth.
+
+Outliers were detected using both Z-score (with a threshold of $\pm 3$) and IQR methods. 
+Outliers were found, however comparing them to the complete dataset revealed no unrealistic 
+values. Since the outliers were most likely due to high variance in some variables, not data 
+quality issues, they were not excluded from the dataset.
 
 \section{Analysis}
 
-The analysis consisted of a correlation and multicollinearity analysis and a regression analysis. ...
+This section describes the analytical approach used to investigate the relationships between 
+socioeconomic variables and active military personnel size.
+It describes how correlations and multicollinearity of the data was evaluated, 
+how a sensitivity analysis for imputed values and a robutness check for multicollinear 
+variables were conducted. Finally, is is explained how the regression model was estimated.
 
 The correlation and multicollinearity analysis were performed on demeaned data, consistent 
 with the fixed effects regression. The fixed effects model relies on within-country variation 
@@ -88,12 +152,12 @@ assess the potential presence of multicollinearity. VIF values indicate how much
 of a coefficient estimate is inflated due to relationships with other predictors.
 
 The regression analysis used a fixed-effects panel regression model to control for time-invariant 
-heterogeneity across countries \parencite{backstrom_are_2019}. This means that it was not 
+heterogeneity across countries \parencite{backstrom_are_2019}. This meant that it was not 
 neccessary to 
-use the demeaned data, because the model already takes differences between entities into account.
+use the demeaned data, because the model already took differences between entities into account.
 A fixed effects regression isolates the within-country variation over time, enabling more accurate 
 estimation of the conditional effects of economic factors on military personnel levels.
-In other words, by introducing country fixed effects, the model is estimated on changes within 
+In other words, by introducing country fixed effects, the model was estimated on changes within 
 countries, rather than between countries. (possibly reference backstrom) 
 The following equation was used to estimate the base model:
 \begin{align*}
@@ -115,3 +179,9 @@ attainment data in the regression model. Three regression models were created: M
 complete data, including observations with interpolated educational attainment values, Model B 
 that excluded rows with interpolated and filled values and Model C with complete data and an additional 
 dummy variable indicating whether the education data was interpolated or not.
+
+The final fixed-effect regression model used clustered country-level standard errors to 
+account for portential within-country correlation of error terms and heteroskedacity across 
+countries. In panel data, observations from the same entity are often not independent, which 
+violates classical OLS assumptions. Clustering allows for arbitrary correlation within 
+countries, ensuring a more robust and conservative model.
