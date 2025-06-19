@@ -11,10 +11,23 @@
 \usepackage{threeparttable}
 \usepackage{geometry}
 \usepackage{amsmath}
+\usepackage{caption}
+\usepackage{chngcntr}
 \usepackage[style=authoryear,backend=biber]{biblatex}
 \addbibresource{references.bib}
 
 \doublespacing
+
+\counterwithout{table}{chapter}
+
+\captionsetup[table]{
+  labelfont=bf,
+  textfont=it,
+  justification=raggedright,
+  singlelinecheck=false,
+  labelsep=space,
+  name=Table
+}
 
 \begin{document}
 

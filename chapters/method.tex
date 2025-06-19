@@ -42,7 +42,6 @@ spending data were aquired from different issues of \textcite{noauthor_military_
 as each issue contained data for a specific year. Data for active armed forces numbers, 
 defence spending per capita and defence spending's share of GDP was
 selected for NATO member countries from each table.
-Data types were then adjusted so that numerical values were presented in a consistent format. (neccessary???)
 In order to ensure that the data is comparable, the effect of inflation was removed 
 from defence spending per capita data by adjusting the values to 2015 USD using the Consumer Price 
 Index (CPI) of different years. The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
@@ -62,16 +61,15 @@ so that they could be
 merged with the military personnel and defence spending data.
 
 A logarithmic transformation was applied to variables active armed forces per capita, GDP per capita 
-and defence spending per capita. These variables can have skewed, due to disproportionate influence 
-from larger countries, which can have substancially higher values for the variables in question. 
+and defence spending per capita. These variables can have skewed distributions, due to disproportionate influence 
+from larger countries. 
 Logging can mitigate this skewness, stabilize variance and allow for interpretation of the regression 
 coefficients in terms of elasticities. Other variables were not logarithmically transformed as they were 
 expressed as percentages, therefore logging would make interpretation difficult and distort the scales.
 
 Finally, the military and economic data tables were merged into a complete dataset. 
-The active armed forces per capita column was created using military and population data
-and additional 
-columns for annual changes in GDP per capita, defence spending per capita  
+The active armed forces per capita column was created by dividing active armed forces and population data.
+Additional columns for annual changes in GDP per capita, defence spending per capita  
 and defence spending's share of GDP were calculated by finding their percentage changes from 
 the previous year's value.
 
@@ -122,7 +120,7 @@ The use of imputed educational attainment values was also investigated. There we
 of 23 interpolated or filled values across a total of 285 observations. No country had
 more than 2 imputed values in the timeframe. Given the small scale of imputed values, it was 
 unlikely that a strong bias would be introduced. Nevertheless, a sensitivty analysis should 
-be conducted to analyze the effect of imputation more in depth.
+be conducted to analyse the effect of imputation more in depth.
 
 Outliers were detected using both Z-score (with a threshold of $\pm 3$) and IQR methods. 
 Outliers were found, however comparing them to the complete dataset revealed no unrealistic 
@@ -138,7 +136,7 @@ how a sensitivity analysis for imputed values and a robutness check for multicol
 variables were conducted. Finally, is is explained how the regression model was estimated.
 
 The correlation and multicollinearity analysis were performed on demeaned data, consistent 
-with the fixed effects regression. The fixed effects model relies on within-country variation 
+with the fixed-effects regression. The fixed-effects model relies on within-country variation 
 over time by subtracting country-specific means, so the data was transformed similarly. For 
 each observation, the mean of the variable across all year of the corresponding country was 
 subtracted from the original value. This demeaning process makes the data comparable across 
@@ -155,10 +153,10 @@ The regression analysis used a fixed-effects panel regression model to control f
 heterogeneity across countries \parencite{backstrom_are_2019}. This meant that it was not 
 neccessary to 
 use the demeaned data, because the model already took differences between entities into account.
-A fixed effects regression isolates the within-country variation over time, enabling more accurate 
+A fixed-effects regression isolates the within-country variation over time, enabling more accurate 
 estimation of the conditional effects of economic factors on military personnel levels.
 In other words, by introducing country fixed effects, the model was estimated on changes within 
-countries, rather than between countries. (possibly reference backstrom) 
+countries, rather than between countries. (possibly reference backstrom!!!) 
 The following equation was used to estimate the base model:
 \begin{align*}
 log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it} 
