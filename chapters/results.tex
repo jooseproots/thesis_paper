@@ -35,7 +35,7 @@ Def. budget \% GDP \% change & -0.11 & 0.02 & 0.41 & -0.15 & -0.00 & 0.51 & -0.1
 \end{table}
 
 The correlation analysis revealed no single factor with a strong correlation to active military personnel numbers.
-Active armed forces per capita was found to have weak to moderate positive correlations with GDP per 
+Active armed forces per capita were found to have weak to moderate positive correlations with GDP per 
 capita (0.17), defence spending proportion of GDP (0.14) and defence spending per capita (0.29).
 Weak negative correlations were observed with unemployment rate
 (-0.08), secondary education attainment rate (-0.12) and defence spending proportion of GDP annual 
@@ -47,7 +47,7 @@ Notable strong correlations of independent variables were found to be between de
 defence expenditure as a proportion of GDP (0.85), and between their annual changes (0.80). 
 This was unsurprising given that these variables are derived from defence spending. 
 However, such large correlations may indicate multicollinearity, which could 
-bias regression estimates and inflate standard errors. multicollinearity should be 
+bias regression estimates and inflate standard errors. This meant that multicollinearity should be 
 assessed before running the regression.
 
 While the correlation analysis provides useful preliminary insight into the relationships between 
@@ -80,12 +80,12 @@ Defence spending \% GDP \% change & 4.43 \\
 \end{table}
 
 The initial results showed moderate to high VIF values for defence spending per capita (6.00), 
-defence spending as percentage of GDP (4.93) and their respective annual percentage changes (4.28 and 4.43)
+defence spending as a percentage of GDP (4.93) and their respective annual percentage changes (4.28 and 4.43)
 indicating the presence of multicollinearity. This is expected as these variables were highly correlated 
 and capture similar underlying dynamics.
-Generally VIF values from 1 to 5 are considered 
+Generally, VIF values from 1 to 5 are considered 
 moderate and mostly acceptable, while values over 5 can be potentially problematic. To mitigate 
-this, variables defence spending per capita and its annual change were removed and VIF values 
+this, variables defence spending per capita and its annual change were removed, and VIF values 
 were calculated again.
 
 \begin{table}[ht]
@@ -107,10 +107,10 @@ Defence spending \% GDP \% change & 1.50 \\
 \label{tab:multicollinearity_reduced}
 \end{table}
 
-The results showed significantly reduced VIF values, with defence spending percentage of GDP now having 
+The results showed significantly reduced VIF values, with defence spending's share of GDP now having 
 1.93 and its annual change having 1.50. The observed reduction in multicollinearity motivated the 
-esitmation of two regression models: a full model including all variables and a reduced model 
-excluding the highly collinear variables. This motivates a robustness check to ensure, whether 
+estimation of two regression models: a full model including all variables and a reduced model 
+excluding the highly collinear variables. This motivates a robustness check to ensure whether 
 the findings of the models are stable or influenced by multicollinearity.
 
 \section{Regression Analysis}
@@ -119,21 +119,20 @@ the findings of the models are stable or influenced by multicollinearity.
 
 Two fixed-effects regression models were estimated to assess the robustness of the model. 
 The first was a base model, 
-which included all variables and the second was a reduced model with defence budget 
-per capita and its annual change excluded, as these variables had exhibited multicollineary 
-with defence budget as proportion of GDP and its annual change.
+which included all variables, and the second was a reduced model with defence budget 
+per capita and its annual change excluded, as these variables had exhibited multicollinearity 
+with defence budget's proportion of GDP and its annual change.
 
 The full model explained a larger proportion of the within-country variance $(R^2 = 0.2066 vs 0.1200)$
-and included a statistically significant variable defence spending per capita, which had a positive 
-relationship with the dependent variable. However the multicollinearity between defence spending per 
-capita and defence spending as percentage of GDP could undermine the stability and interpretability 
-of the model. This was evidenced by the change in the sign of defence budget as percentage of GDP 
-coefficient from negative to positive. Defence budget as percentage of GDP was expected to exhibit 
-effects in the same direction as defence budget per captia as they are derived from the same underlying 
+and included a statistically significant variable, defence spending per capita, which had a positive 
+relationship with the dependent variable. However, the multicollinearity between defence spending per 
+capita and defence spending's share of GDP could undermine the stability and interpretability 
+of the model. This was evidenced by the change in the sign of defence spending's percentage of GDP 
+coefficient from negative to positive. Defence spending's share of GDP was expected to exhibit 
+effects in the same direction as defence budget per capita, as they are derived from the same underlying 
 measure of defence budgets. The opposing signs in the full model and the change of direction in the 
-reduced model raised concers of multicollinearity distorting the individual coefficient estimates.
-These concerns were further supported by the change in statistical significance of defence budget as 
-percentage of GDP annual change, which was not significant in the full model, but became significant in 
+reduced model raised concerns of multicollinearity distorting the individual coefficient estimates.
+These concerns were further supported by the change in statistical significance of the annual change in defence budget's share of GDP, which was not significant in the full model, but became significant in 
 the reduced one.
 These inconsistencies supported the decision to remove the collinear variables and favour the reduced 
 one, which could be more stable and interpretable.
@@ -172,11 +171,11 @@ F-statistic (robust) & $F(8,245)=7.97, p<0.001$ & $F(6,247)=5.61, p<0.001$ \\
 
 \subsection{Sensitivity Analysis}
 
-Three models were estimates to analize the effect of interpolated and filled educational attainment values.
+Three models were estimated to analyse the effect of interpolated and filled educational attainment values.
 The secondary educational attainment rate coefficients stayed consistently negative and statistically
 significant across models. Additionally, other coefficients also remained with similar magnitudes. 
 This means that using interpolated values does not meaningfully distort the 
-relationship with the target variable. This is suppoerted by the fact that the dummy variable for 
+relationship with the target variable. This is supported by the fact that the dummy variable for 
 interpolated values in Model C is not statistically significant, suggesting no systematic 
 differences in observations, where the education rate was interpolated or filled in. 
 
@@ -213,14 +212,14 @@ F-statistic (robust) & $F(6,247)=5.6143, p<0.001$ & $F(6,224)=4.7800, p<0.001$ &
 \label{tab:sensitivity}
 \end{table}
 
-Based on these results, Model C with full data including interpolated and filled values and a dummy 
+Based on these results, Model C with full data, including interpolated and filled values, and a dummy 
 variable flagging imputed values was chosen
-as the prefferred regression model. While imputed data could introduce noise or subtle bias
-into regression estimates, this did not appear to be the case this time as the interpolation dummy 
+as the preferred regression model. While imputed data could introduce noise or subtle bias
+into regression estimates, this did not appear to be the case this time, as the interpolation dummy 
 variable was found to be statistically insignificant. 
-Nevertheless, Model C was adopted as it retains full sample size while explicitly controlling 
+Nevertheless, Model C was adopted as it retains the full sample size while explicitly controlling 
 for data quality variation, thereby increasing the robustness of the model.
-Additionally, Model C had a marginally larger within country 
+Additionally, Model C had a marginally larger within-country 
 $R^2$, than Model A (0.1247 vs 0.1200), meaning it explained the variation within countries 
 slightly better, which again supported the decision to choose Model C.
 
@@ -232,7 +231,7 @@ approximately 12.47\% of within-country variation in the logarithm of active arm
 The robust/clustered F-statistic for the model was $F(7, 246)=2.3521, p=0.0242$, 
 showing joint significance of the independent variables.
 In other words, the model better explains the variation in the dependent variable than a model with 
-only country-specific intersepts and no independent variables. 
+only country-specific intercepts and no independent variables. 
 
 \renewcommand{\arraystretch}{1.3}
 
@@ -269,11 +268,11 @@ only country-specific intersepts and no independent variables.
 
 Table~\ref{tab:final_model} reports the parameter estimates for the final model. 
 Unemployment rate proved to be statistically insignificant $(-0.0011, p=0.9039)$, 
-indicating that it may not substancially affect military labour supply in the sampled country and year subset.
-Secondary education attainment rate exhibited a significant modest negative relationship $(-0.0084, p=0.0424)$ 
+indicating that it may not substantially affect military labour supply in the sampled country and year subset.
+Secondary education attainment rate exhibited a significant, modest negative relationship $(-0.0084, p=0.0424)$ 
 with the dependent variable, meaning for every 1 percentage point increase in secondary education 
 attainment rate, the active military size per capita decreased by approximately 0.84\%.
-This negative relationship could be caused my multiple factors, for example more educated individuals 
+This negative relationship could be caused by multiple factors, for example, more educated individuals 
 may consider their opportunities better in the civilian sector, while it could also be that countries 
 with higher educational attainment rates have more technologically advanced armed forces, which require 
 less manpower.
@@ -282,25 +281,25 @@ The logarithm of GDP per capita had a positive, but insignificant relationship $
 with armed forces per capita. This could suggest that the state of the economy alone does not 
 systematically influence the size of a county's active military. Wealthier countries may also
 prioritize technology over manpower.
-The annual change in GDP per capita also found to be 
+The annual change in GDP per capita was also found to be 
 statistically insignificant $(-0.0014, p=0.3695)$,
-indicating that short term economic changes might not influence active military personnel size. 
+indicating that short-term economic changes might not influence active military personnel size. 
 
-Defence spending's share of GDP however exhibited 
+Defence spending's share of GDP however, exhibited 
 a significant and positive relationship $(0.0882, p=0.0209)$, meaning for each percentage point increase in defence spending's 
 proportion of GDP, active military size per capita increased approximately 8.82\%.
 The annual changes in defence spending's proportion of GDP proved to be an insignificant predictor
-on active armed forces numbers $(-0.0013, p=0.0791)$. 
+of active armed forces numbers $(-0.0013, p=0.0791)$. 
 These findings could indicate that a higher baseline proportion of defence 
-spending in GDP may signal long-term commitments to maintaining a large military, while short term 
+spending in GDP may signal long-term commitments to maintaining a large military, while short-term 
 changes in the proportion may not directly predict a change in active military personnel. It could 
-also be that short term investments in defence spending were used for assets other than manpower.
+also be that short-term investments in defence spending were used for assets other than manpower.
 
 It is important to note for the interpretation of these coefficients that the dependent variable was 
 active military size per capita, meaning the coefficients reflect relative changes in active military personnel 
 with respect to population size. Assuming a stable population, the reported percentage changes 
 in active military size per capita can also be interpreted as approximate percentage changes in total 
-active military size. However in cases where population can vary notably, the per capita measure provides 
+active military size. However, in cases where population can vary notably, the per capita measure provides 
 a more consistent comparison.
 
 % Parameter Estimates Table
