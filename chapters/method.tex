@@ -2,36 +2,6 @@
 
 \section{Data Preparation}
 
-\renewcommand{\arraystretch}{1.3}
-
-\begin{table}[ht]
-\small
-\caption{Variable Descriptions}
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabularx}{\textwidth}{>{\hsize=1\hsize\raggedright\arraybackslash}X 
-                            >{\hsize=1.75\hsize\raggedright\arraybackslash}X 
-                            >{\raggedright\arraybackslash}X 
-                            >{\hsize=0.6\hsize\raggedright\arraybackslash}X 
-                            >{\hsize=0.6\hsize\raggedright\arraybackslash}X}
-\toprule
-\textbf{Variable} & \textbf{Description} & \textbf{Source} & \textbf{Unit} & \textbf{Transformation} \\
-\midrule
-Active armed forces per capita & Number of active military personnel per capita & Military Balance, World Bank & per capita & log() \\
-Unemployment rate & National unemployment rate & World Bank & \% (0-100) & none \\
-Secondary education rate & Proportion of population (25+) with secondary education & World Bank & \% (0-100) & none \\
-GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
-Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
-Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
-GDP per capita \% change & Annual percentage change in GDP per capita & World Bank (own calculation) & \% & none \\
-Defence spending per capita \% change & Annual percentage change in defence spending per capita & Military Balance (own calculation) & \% & none \\
-Defence spending \% GDP \% change & Annual percentage change in defence spending as \% of GDP & Military Balance (own calculation) & \% & none \\
-\bottomrule
-\end{tabularx}
-}
-\label{tab:variables}
-\end{table}
-
 The data preparation process involved several steps to create a clean and structured 
 dataset that could be used for analysis. The study combines military and socioeconomic 
 data for NATO countries across multiple years. Data was collected from various sources,
@@ -71,7 +41,37 @@ Finally, the military and economic data tables were merged into a complete datas
 The active armed forces per capita column was created by dividing the active armed forces by population numbers.
 Additional columns for annual changes in GDP per capita, defence spending per capita  
 and defence spending's share of GDP were calculated by finding their percentage changes from 
-the previous year's value.
+the previous year's value. Table~\ref{tab:variables} summarizes the variables of the prepared dataset.
+
+\renewcommand{\arraystretch}{1.3}
+
+\begin{table}[ht]
+\small
+\caption{Variable Descriptions}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabularx}{\textwidth}{>{\hsize=1\hsize\raggedright\arraybackslash}X 
+                            >{\hsize=1.75\hsize\raggedright\arraybackslash}X 
+                            >{\raggedright\arraybackslash}X 
+                            >{\hsize=0.6\hsize\raggedright\arraybackslash}X 
+                            >{\hsize=0.6\hsize\raggedright\arraybackslash}X}
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Source} & \textbf{Unit} & \textbf{Transformation} \\
+\midrule
+Active armed forces per capita & Number of active military personnel per capita & Military Balance, World Bank & per capita & log() \\
+Unemployment rate & National unemployment rate & World Bank & \% (0-100) & none \\
+Secondary education rate & Proportion of population (25+) with secondary education & World Bank & \% (0-100) & none \\
+GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
+Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
+Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
+GDP per capita \% change & Annual percentage change in GDP per capita & World Bank (own calculation) & \% & none \\
+Defence spending per capita \% change & Annual percentage change in defence spending per capita & Military Balance (own calculation) & \% & none \\
+Defence spending \% GDP \% change & Annual percentage change in defence spending as \% of GDP & Military Balance (own calculation) & \% & none \\
+\bottomrule
+\end{tabularx}
+}
+\label{tab:variables}
+\end{table}
 
 \section{Data understanding}
 

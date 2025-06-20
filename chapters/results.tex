@@ -2,39 +2,14 @@
 
 \section{Correlation Analysis}
 
-\renewcommand{\arraystretch}{1.3}
+\begin{figure}[htbp]
+    \caption{Correlation matrix}
+    \centering
+    \includegraphics[width=1\textwidth]{images/correlation_heatmap.pdf}
+    \label{fig:correlation_heatmap}
+\end{figure}
 
-\begin{table}[htbp]
-\caption{Correlation matrix}
-\small
-\centering
-\begin{tabularx}{\textwidth}{p{2.8cm} *{9}{>{\centering\arraybackslash}X}}
-\toprule
- & \rotatebox{90}{\parbox{2.5cm}{Armed Forces per cap.}} 
- & \rotatebox{90}{\parbox{2.5cm}{GDP per cap.}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget per cap.}} 
- & \rotatebox{90}{\parbox{2.5cm}{Unemployment rate}} 
- & \rotatebox{90}{\parbox{2.5cm}{Secondary education rate}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget \% GDP}} 
- & \rotatebox{90}{\parbox{2.5cm}{GDP per cap. \% change}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget per cap. \% change}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget \% GDP \% change}} \\
-\midrule
-Armed Forces per cap. & 1.00 & 0.17 & 0.29 & -0.08 & -0.12 & 0.14 & 0.04 & -0.06 & -0.11 \\
-GDP per cap. & 0.17 & 1.00 & 0.64 & -0.61 & 0.25 & 0.44 & 0.30 & 0.26 & 0.02 \\
-Def. budget per cap. & 0.29 & 0.64 & 1.00 & -0.49 & 0.17 & 0.85 & 0.07 & 0.51 & 0.41 \\
-Unemployment rate & -0.08 & -0.61 & -0.49 & 1.00 & -0.40 & -0.42 & -0.08 & -0.30 & -0.15 \\
-Secondary education rate & -0.12 & 0.25 & 0.17 & -0.40 & 1.00 & 0.23 & -0.06 & -0.01 & -0.00 \\
-Def. budget \% GDP & 0.14 & 0.44 & 0.85 & -0.42 & 0.23 & 1.00 & -0.07 & 0.45 & 0.51 \\
-GDP per cap. \% change & 0.04 & 0.30 & 0.07 & -0.08 & -0.06 & -0.07 & 1.00 & 0.13 & -0.16 \\
-Def. budget per cap. \% change & -0.06 & 0.26 & 0.51 & -0.30 & -0.01 & 0.45 & 0.13 & 1.00 & 0.80 \\
-Def. budget \% GDP \% change & -0.11 & 0.02 & 0.41 & -0.15 & -0.00 & 0.51 & -0.16 & 0.80 & 1.00 \\
-\bottomrule
-\end{tabularx}
-\label{tab:correlation}
-\end{table}
-
-The correlation analysis revealed no single factor with a strong correlation to active military personnel numbers.
+As shown in Figure~\ref{fig:correlation_heatmap}, the correlation analysis revealed no single factor with a strong correlation to active military personnel numbers.
 Active armed forces per capita were found to have weak to moderate positive correlations with GDP per 
 capita (0.17), defence spending proportion of GDP (0.14) and defence spending per capita (0.29).
 Weak negative correlations were observed with unemployment rate
@@ -79,7 +54,7 @@ Defence spending \% GDP \% change & 4.43 \\
 \label{tab:multicollinearity_full}
 \end{table}
 
-The initial results showed moderate to high VIF values for defence spending per capita (6.00), 
+The initial results, displayed in Table~\ref{tab:multicollinearity_full}, showed moderate to high VIF values for defence spending per capita (6.00), 
 defence spending as a percentage of GDP (4.93) and their respective annual percentage changes (4.28 and 4.43)
 indicating the presence of multicollinearity. This is expected as these variables were highly correlated 
 and capture similar underlying dynamics.
@@ -87,6 +62,14 @@ Generally, VIF values from 1 to 5 are considered
 moderate and mostly acceptable, while values over 5 can be potentially problematic. To mitigate 
 this, variables defence spending per capita and its annual change were removed, and VIF values 
 were calculated again.
+
+Table~\ref{tab:multicollinearity_reduced} reports the VIF values, excluding the possibly multicollinear 
+cariables.
+The VIF values reduced significantly, with defence spending's share of GDP now having 
+1.93 and its annual change having 1.50. The observed reduction in multicollinearity motivated the 
+estimation of two regression models: a full model including all variables and a reduced model 
+excluding the highly collinear variables. This motivates a robustness check to ensure whether 
+the findings of the models are stable or influenced by multicollinearity.
 
 \begin{table}[ht]
 \caption{Variance Inflation Factors (reduced variables)}
@@ -107,23 +90,19 @@ Defence spending \% GDP \% change & 1.50 \\
 \label{tab:multicollinearity_reduced}
 \end{table}
 
-The results showed significantly reduced VIF values, with defence spending's share of GDP now having 
-1.93 and its annual change having 1.50. The observed reduction in multicollinearity motivated the 
-estimation of two regression models: a full model including all variables and a reduced model 
-excluding the highly collinear variables. This motivates a robustness check to ensure whether 
-the findings of the models are stable or influenced by multicollinearity.
-
 \section{Regression Analysis}
 
 \subsection{Robustness Check}
 
-Two fixed-effects regression models were estimated to assess the robustness of the model. 
+Two fixed-effects regression models were estimated to assess the robustness of the model, 
+Table~\ref{tab:robustness} reports their summaries. 
 The first was a base model, 
 which included all variables, and the second was a reduced model with defence budget 
 per capita and its annual change excluded, as these variables had exhibited multicollinearity 
 with defence budget's proportion of GDP and its annual change.
 
-The full model explained a larger proportion of the within-country variance $(R^2 = 0.2066 vs 0.1200)$
+The full model explained a larger proportion of the within-country variance 
+$(R^2 = 0.2066\, \text{vs.} \,0.1200)$
 and included a statistically significant variable, defence spending per capita, which had a positive 
 relationship with the dependent variable. However, the multicollinearity between defence spending per 
 capita and defence spending's share of GDP could undermine the stability and interpretability 
@@ -171,7 +150,8 @@ F-statistic (robust) & $F(8,245)=7.97, p<0.001$ & $F(6,247)=5.61, p<0.001$ \\
 
 \subsection{Sensitivity Analysis}
 
-Three models were estimated to analyse the effect of interpolated and filled educational attainment values.
+Table ~\ref{tab:sensitivity} shows the
+three models that were estimated to analyse the effect of interpolated and filled educational attainment values.
 The secondary educational attainment rate coefficients stayed consistently negative and statistically
 significant across models. Additionally, other coefficients also remained with similar magnitudes. 
 This means that using interpolated values does not meaningfully distort the 
@@ -225,7 +205,7 @@ slightly better, which again supported the decision to choose Model C.
 
 \subsection{Final model}
 
-The summary of the final model is reported in table~\ref{tab:model_summary}.
+The summary of the final model is reported in Table~\ref{tab:model_summary}.
 The final fixed-effects regression model had a 0.1247 within-entity $R^2$, meaning it explained 
 approximately 12.47\% of within-country variation in the logarithm of active armed forces per capita.
 The robust/clustered F-statistic for the model was $F(7, 246)=2.3521, p=0.0242$, 

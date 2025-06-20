@@ -20,6 +20,8 @@
 
 \counterwithout{table}{chapter}
 
+\counterwithout{figure}{chapter}
+
 \captionsetup[table]{
   labelfont=bf,
   textfont=it,
@@ -27,6 +29,15 @@
   singlelinecheck=false,
   labelsep=space,
   name=Table
+}
+
+\captionsetup[figure]{
+  labelfont=bf,
+  textfont={it, doublespacing},
+  justification=raggedright,
+  singlelinecheck=false,
+  labelsep=newline,
+  name=Figure
 }
 
 \begin{document}
