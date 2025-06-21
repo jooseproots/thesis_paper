@@ -88,15 +88,15 @@
 \end{singlespace}
 \end{titlepage}
 
-\titleformat{\chapter}[display]
+\titleformat{\chapter}[hang]
   {\normalfont\Huge\bfseries} % formatting for the title
-  {}                          % no label ("Chapter X")
+  {\thechapter. }             % no label ("Chapter X")
   {0pt}                       % spacing between label and title
-  {\Huge}                    % code before the title
+  {\Huge}                     % code before the title
 
 \titlespacing{\chapter}
   {0pt}    % left margin
-  {-2.5\baselineskip}    % space before (was likely ~50pt by default)
+  {-1\baselineskip}    % space before (was likely ~50pt by default)
   {12pt}   % space after
 
 
@@ -112,7 +112,7 @@
 \include{chapters/statement}
 
 % Bibliography
-\newgeometry{top=1.75in}  % Adjust the top margin for the bibliography page
+\newgeometry{top=1in}  % Adjust the top margin for the bibliography page
 
 \printbibliography
 
