@@ -58,10 +58,13 @@ The initial results, displayed in Table~\ref{tab:multicollinearity_full}, showed
 defence spending as a percentage of GDP (4.93) and their respective annual percentage changes (4.28 and 4.43)
 indicating the presence of multicollinearity. This is expected as these variables were highly correlated 
 and capture similar underlying dynamics.
-Generally, VIF values from 1 to 5 are considered 
-moderate and mostly acceptable, while values over 5 can be potentially problematic. To mitigate 
+To mitigate 
 this, variables defence spending per capita and its annual change were removed, and VIF values 
 were calculated again.
+It should be noted that a high VIF does not always justify the elimination of a variable;  
+the exclusion should be theoretically motivated, for example if two variables measure 
+the same underlying factor \parencite{obrien_caution_2007}. In this case, the 
+exclusion of one of the two defence spending variables makes sense, as they are conceptually similar.
 
 Table~\ref{tab:multicollinearity_reduced} reports the VIF values, excluding the possibly multicollinear 
 cariables.

@@ -123,10 +123,23 @@ more than 2 imputed values in the timeframe. Given the small scale of imputed va
 unlikely that a strong bias would be introduced. Nevertheless, a sensitivity analysis should 
 be conducted to analyse the effect of imputation more in depth.
 
-Outliers were detected using both Z-score (with a threshold of $\pm 3$) and IQR methods. 
+Outliers were identified using both Z-score and 
+Interquartile Range (IQR) methods, which are commonly used in literature for outlier 
+detection. The Z-score method calculates the distance of a data point from 
+the mean in terms of standard deviations, using the formula:
+\begin{equation*}
+    Z = \frac{X - \mu}{\sigma}
+\end{equation*}
+where X is the data point, $\mu$ is the sample mean and $\sigma$ is the sample standard deviation.
+A common threshold of $\pm 3$ was used to identify values in approximately the outer 0.3\% of normally 
+distributed data.
+The IQR method is non-parametric and less dependent on distributional assumptions. The outliers 
+were defined as values, which fall below $Q1 - 1.5 \cdot IQR$ or above $Q3 + 1.5 \cdot IQR$, where 
+$Q1$ and $Q3$ are the first and third quartiles, reported in Table~\ref{tab:descriptive_stats} as 
+25\% and 75\%, and $IQR = Q3 - Q1$. This approach helps identify skewed or non-normally distributed outliers.
 Comparing outliers to the complete dataset revealed no unrealistic 
-values. Since the outliers were most likely due to high variance in some variables, not data 
-quality issues, they were not excluded from the dataset.
+values. Since the outliers appeared to be the result of natural variability, not data 
+quality issues, they were not excluded from the dataset. \parencite{barnett_outliers_1994}
 
 \section{Analysis}
 
@@ -144,16 +157,34 @@ subtracted from the original value. This demeaning process makes the data compar
 countries as the variables only reflect deviations from each country's average. 
 
 The correlation analysis involved calculating the Pearson correlation coefficient for each 
-of the variables, resulting in a correlation matrix. The correlation matrix was used to assess the 
-direction and strength of bivariate relationships.
+of the variables, resulting in a correlation matrix, which can be used to assess the 
+direction and strength of bivariate relationships. 
+The Pearson coefficient, denoted by $r$, is 
+defined as:
+\begin{equation*}
+    r_{xy} = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \sum(y_i - \bar{y})^2}}
+\end{equation*}
+where $x_i$ and $y_i$ are observations of variables $X$ and $Y$, and $\bar{x}$, $\bar{y}$ are their 
+sample means. The coefficient values range from -1 to 1, where absolute values close to 1 indicate 
+strong relationships and values near 0 suggest weak or no correlations \parencite{cohen_bivariate_2003}. 
+
 Variance Inflation Factors (VIF) were calculated for the independent variables to 
-assess the potential presence of multicollinearity. VIF values indicate how much variance
-of a coefficient estimate is inflated due to relationships with other predictors.
+assess the potential presence of multicollinearity. VIFs indicate how much the variance
+of a regression coefficient is inflated due to relationships with other predictors. Multicollinearity 
+can make estimates unstable and cause interpretability problems. The VIF for 
+a variable $X_i$ is calculated as:
+\begin{equation*}
+    VIF_i = \frac{1}{1-R^2_i}
+\end{equation*}
+where $R^2_i$ is the coefficient of determination obrained by regressing $X_i$ on all other independent
+variables. It is typically considered, that VIF values from 1 to 5 are
+moderate and mostly acceptable, while values over 5, or more conservatively 10, 
+can be potentially problematic \parencite{obrien_caution_2007}.
 
 The regression analysis used a fixed-effects panel regression model to control for time-invariant 
 heterogeneity across countries \parencite{backstrom_are_2019}. This meant that it was not 
 necessary to 
-use the demeaned data, because the model already took differences between entities into account.
+use the demeaned data anymore, because the model already took differences between entities into account.
 A fixed-effects regression isolates the within-country variation over time, enabling more accurate 
 estimation of the conditional effects of economic factors on military personnel levels.
 In other words, by introducing country fixed effects, the model was estimated on changes within 
