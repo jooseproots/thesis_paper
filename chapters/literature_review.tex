@@ -21,14 +21,22 @@ First the effect of unemployment rates will be discussed, then GDP and defence s
 and finally educational attainment.
 
 The assertion that low unemployment rates 
-cause recruitment and retention issues is supported by several authors such as 
-\textcite{backstrom_are_2019} who found a positive and statistically significant correlation 
-between unemployment and military application rates in Sweden and \textcite{asch_cash_2010},
-who similarly found unemployment rate to be positively and significantly related to
-high-quality enlistment contracts in the United States. These findings align with 
-research by \textcite{balcaen_unemployment_2025} who found a one percentage point increase in 
+cause recruitment and retention issues is supported by several authors.
+For example, \textcite{backstrom_are_2019}, using a linear fixed-effects regression with panel data 
+on Swedish counties in 2011-2015,
+found a positive and statistically significant correlation 
+between unemployment and military application rates. \textcite{asch_cash_2010} also estimated a
+linear fixed-effects regression with panel data on U.S states across quarters, 
+controlling for both time and state fixed effects.
+They similarly found unemployment rate to be positively and significantly related to
+high-quality enlistment contracts. These findings align with 
+research by \textcite{balcaen_unemployment_2025} who used a linear mixed-effects regression, 
+which included both fixed and random effects, to account for population and subgroup variation
+in data across Belgian provinces.
+This study found a one percentage point increase in 
 unemployment rate to result in a 0.0137 percentage point increase in military 
-application rates. However, some evidence also suggests the opposite, for example 
+application rates.
+However, some evidence also suggests the opposite, for example 
 \textcite{holcner_military_2021} found an inverse relationship between unemployment and military 
 recruitment in the Czech Armed Forces.
 
@@ -42,10 +50,11 @@ along with their dynamics, could reflect employment opportunities in the civilia
 military sectors and in turn, be correlated with choices to enlist and stay in the military.
 Although \textcite{backstrom_are_2019} researched mostly unemployment rates, he highlights 
 the fact that a stronger civilian economy increases the difficulty of recruiting new military 
-labour force. On the other hand, \textcite{holcner_military_2021} found that the annual 
+labour force. On the other hand, \textcite{holcner_military_2021} used a multiple linear 
+regression model to find that the annual 
 increase in GDP, indicating a growing economy, had a positive impact on the recruitment to the 
 Czech Armed Forces. The annual increase in defence expenditure was also found to be 
-correlated with a higher number of military recruits \parencite{holcner_military_2021}.
+correlated with a higher number of military recruits in that study.
 
 The U.S Department of Defense has a benchmark of at least 90\% of new military recruits 
 having secondary education or higher \parencite{cnas_resources_and_force_readiness_division_fiscal_nodate}.
@@ -54,8 +63,11 @@ also argue that the transition to a smaller and technologically advanced militar
 made the recruitment process more selective and less likely for an individual to 
 be allowed in the military without a high school degree. \textcite{elster_study_1982} 
 found that the four-year retention rates were higher amongst U.S military recruits 
-with a high-school degree, compared to those with lower educational attainment, however 
-this study was conducted with data from the 1970s, which may not reflect the current 
+with a high-school degree, compared to those with lower educational attainment. Additionally,
+this study used grouped data in regression analysis to study the attrition rates from the military 
+and found high school graduates to have lower attrition rates than those with lower 
+educational attainment.
+However, this study was conducted with data from the 1970s, which may not reflect the current 
 socioeconomic or military environment. 
 In contrast, a more recent study by \textcite{hof_quality_2023} found that in the 
 Dutch Armed Forces recruits training to become officers, who have a higher level of 
@@ -63,6 +75,16 @@ secondary education prior to enlistment, show higher intentions to quit basic tr
 than those training to become noncommissioned officers, who have a lower level of 
 secondary education. This study hypothesised that recruits with a better educational 
 background could believe that they have better opportunities in the civilian labour market.
+\textcite{asch_cash_2010} included a variable for the percentage of high school graduates,
+who are enrolled in college, in their regression model, but found no statistically significant
+relationship with the number of high-quality enlistment contracts, further reinforcing the 
+mixed results on the impact of educational attainment on military personnel.
+
+The reviewed literature predominantly relies on quantitative methods, commonly using 
+panel regression models to estimate the impact of socioeconomic variables on 
+military recruitment and retention. Fixed-effects models are often utilised to account for 
+heterogeneity across geographical units, while random-effects and time-controlled fixed-effects
+models are also employed in some studies.
 
 This literature review has shown that socioeconomic factors such as unemployment rates, 
 GDP, defence spending and educational attainment can have a notable impact on military 
