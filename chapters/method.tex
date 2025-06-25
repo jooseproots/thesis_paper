@@ -187,15 +187,6 @@ Studies such as \textcite{asch_cash_2010}, \textcite{backstrom_are_2019} and
 \textcite{balcaen_unemployment_2025} have demonstrated the suitability of a fixed-effects 
 regression model for analysing panel data in the context of military recruitment and retention, 
 which informed the methodolical choice of this thesis.
-The regression analysis used a fixed-effects panel regression model to control for time-invariant 
-heterogeneity across countries \parencite{backstrom_are_2019}. This meant that it was not 
-necessary to use the demeaned data anymore, 
-because the model already took differences between entities into account.
-The regression model used country fixed effects to isolate the within-country variation over time, 
-enabling more accurate 
-estimation of the conditional effects of economic factors on military personnel levels.
-In other words, by introducing country fixed effects, the model was estimated on changes within 
-countries, rather than between countries.
 The following equation was used to estimate the base model:
 \begin{align*}
 log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it} 
@@ -206,28 +197,46 @@ log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it}
 + \beta_6 \cdot \Delta GDPPerCap_{it} \\
 &\quad + \beta_7 \cdot \Delta DefSpendingPerCap_{it} 
 + \beta_8 \cdot \Delta DefSpending\%GDP_{it} \\
-&\quad + \alpha_i + \varepsilon_{it}
+&\quad + \alpha_i + \gamma_t + \varepsilon_{it}
 \end{align*}
-where $i$ denotes the country, $t$ the time, $\Delta$ the annual change and 
-$a_i$ is the country-specific fixed effect.
+where $i$ denotes the country, $t$ the time, $\Delta$ the annual change,
+$a_i$ is the country-specific fixed effect and $\gamma_t$ is the year fixed effect.
 
-While two-way fixed-effects models are often used to account for both entity and time-specific 
-unobserved, this thesis adopts a model with only country-specific effects.
-This choice was made because the primary research focus was on the differences between countries,
-rather than year-specific trends that affect all countries similarly. Moreover, may time fixed 
-effects may over-control for variation in independent variables, especially ones correlated 
-across countries, such as GDP per capita. However it was acknowledged that this may 
-introduce omitted variable bias from global shocks, so the model including time fixed effects 
-is reported in Table~\ref{tab:twoway_summary} and Table~\ref{tab:twoway_model} in the \textit{Appendix}.
+The regression analysis used a fixed-effects panel regression model to control for time-invariant 
+heterogeneity across countries. This meant that it was not 
+necessary to use the demeaned data anymore, 
+because the model already took differences between entities into account.
+The regression model used country fixed effects to isolate the within-country variation over time, 
+enabling more accurate 
+estimation of the conditional effects of economic factors on military personnel levels.
+In other words, by introducing country fixed effects, the model was estimated on changes within 
+countries, rather than between countries \parencite{backstrom_are_2019}.
+
+Time fixed effects were also included in the model to control for unobserved heterogeneity
+over time. Given global shocks, such as the COVID-19 pandemic and Russia's invasion of 
+Ukraine, which could have affected all countries similarly, year fixed effects were 
+necessary to avoid omitted variable bias and eliminate aggregate trends in the data \parencite{backstrom_are_2019}.
+For comparison, a model with only country fixed effects and no time fixed effects
+is reported in Table~\ref{tab:oneway_summary} and Table~\ref{tab:oneway_model} in 
+the \textit{Appendix}.
+It can be used to help assess the impact of including time fixed effects.
 
 The final fixed-effects regression model used clustered country-level standard errors to 
 account for potential within-country correlation of error terms and heteroskedasticity across 
 countries. In panel data, observations from the same entity are often not independent, which 
 violates classical OLS assumptions. Clustering allows for arbitrary correlation within 
-countries, ensuring a more robust and conservative model.
+countries, ensuring a more robust and conservative model. While common trends may 
+affect all countries in a given year, clustering at the time-level was not used, as 
+the data has a limited number of time periods, which could lead to unstable clustering 
+or an overly conservative model.
 
-A sensitivity analysis was also conducted to determine whether to include interpolated and filled educational 
+A robustness check and a sensitivity analysis were conducted to further specify the model.
+The robustness check included estimating two models, one with full variables and one with 
+reduced variables, based on the results of the correlation analysis. The models were 
+compared to assess the impact of removing multicollinear variables.
+The sensitivty analysis was used determine whether to include interpolated and filled educational 
 attainment data in the regression model. Three regression models were created: Model A with 
 complete data, including observations with interpolated educational attainment values, Model B 
 that excluded rows with interpolated and filled values, and Model C with complete data and an additional 
-dummy variable indicating whether the education data was interpolated or not.
+dummy variable indicating whether the education data was interpolated or not. The models 
+were again compared to choose the most appropriate specification.

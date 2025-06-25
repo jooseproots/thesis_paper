@@ -118,49 +118,56 @@ with defence budget's proportion of GDP and its annual change.
 \textbf{Term} & \textbf{Base model} & \textbf{Reduced model} \\
 \midrule
 \multicolumn{3}{l}{\textit{Coefficient estimates}} \\
-Unemployment rate & $-0.0041, p=0.3719$ & $-0.0013, p=0.7758$ \\
-Secondary education attainment rate & $-0.0075, p=0.0001$ & $-0.0083, p=0.0001$ \\
-GDP per capita & $-0.1653, p=0.2939$ & $0.2376, p=0.0867$ \\
-Def. budget per capita & $0.3829, p=0.0000$ & - \\
-Def. budget \% GDP & $-0.1110, p=0.0202$ & $0.0846, p=0.0053$ \\
-GDP per capita \% change & $0.0008, p=0.6900$ & $-0.0009, p=0.6437$ \\
-Def. budget per capita \% change & $-0.0014, p=0.0517$ & - \\
-Def. budget \% GDP \% change & $-0.0001, p=0.8607$ & $-0.0013, p=0.0082$ \\
+Unemployment rate & $-0.0108, p=0.3263$ & $-0.0097, p=0.4007$ \\
+Secondary education attainment rate & $-0.0062, p=0.0477$ & $-0.0070, p=0.0408$ \\
+GDP per capita & $0.3754, p=0.1189$ & $0.8725, p=0.0033$ \\
+Def. budget per capita & $0.3635, p=0.0003$ & - \\
+Def. budget \% GDP & $-0.0984, p=0.0898$ & $0.0918, p=0.0442$ \\
+GDP per capita \% change & $-0.0032, p=0.4352$ & $-0.0073, p=0.0989$ \\
+Def. budget per capita \% change & $0.0007, p=0.5899$ & - \\
+Def. budget \% GDP \% change & $-0.0019, p=0.1055$ & $-0.0011, p=0.1599$ \\
 \addlinespace
 \multicolumn{3}{l}{\textit{Model statistics}} \\
-$R^2$ (within) & 0.2066 & 0.1200 \\
-F-statistic (robust) & $F(8,245)=7.97, p<0.001$ & $F(6,247)=5.61, p<0.001$ \\
+$R^2$ & 0.2820 & 0.2038 \\
+F-statistic (robust) & $F(8,237)=4.35, p=0.0001$ & $F(6,239)=2.92, p=0.0091$ \\
 \bottomrule
 \end{tabularx}
 }
 \label{tab:robustness}
 \end{table}
 
-The full model explained a larger proportion of the within-country variance 
-$(R^2 = 0.2066\, \text{vs.} \,0.1200)$
+The base model explained a larger proportion of the variance after accounting for 
+country and year fixed effects
+$(R^2 = 0.2820\, \text{vs.} \,0.2038)$
 and included a statistically significant variable, defence spending per capita, which had a positive 
 relationship with the dependent variable. However, the multicollinearity between defence spending per 
 capita and defence spending's share of GDP could undermine the stability and interpretability 
-of the model. This was evidenced by the change in the sign of defence spending's percentage of GDP 
-coefficient from negative to positive. Defence spending's share of GDP was expected to exhibit 
-effects in the same direction as defence budget per capita, as they are derived from the same underlying 
-measure of defence budgets. The opposing signs in the full model and the change of direction in the 
-reduced model raised concerns of multicollinearity distorting the individual coefficient estimates.
-These concerns were further supported by the change in statistical significance of the annual change in defence budget's share of GDP, which was not significant in the full model, but became significant in 
-the reduced one.
-These inconsistencies supported the decision to remove the collinear variables and favour the reduced 
-one, which could be more stable and interpretable.
+of the model. This was evidenced by the change in defence spending's percentage of GDP's 
+coefficient sign from negative to positive. Defence spending's share of GDP was expected to exhibit 
+effects in the same direction as defence spending per capita, as they are derived from the same underlying 
+measure of defence budgets.
+The concerns of multicollinearity distorting individual coefficient estimates 
+were further supported by the change in significance of 
+GDP per capita, its annual change, and defence spending's share of GDP.
+These inconsistencies supported the decision to remove the collinear variables and 
+favour the reduced model, which could be more stable and interpretable.
 
 \subsection{Sensitivity analysis}
 
-Table ~\ref{tab:sensitivity} shows the
+Table~\ref{tab:sensitivity} shows the
 three models that were estimated to analyse the effect of interpolated and filled educational attainment values.
-The secondary educational attainment rate coefficients stayed consistently negative and statistically
-significant across models. Additionally, other coefficients also remained with similar magnitudes. 
-This means that using interpolated values does not meaningfully distort the 
-relationship with the target variable. This is supported by the fact that the dummy variable for 
-interpolated values in Model C is not statistically significant, suggesting no systematic 
-differences in observations, where the education rate was interpolated or filled in. 
+The secondary educational attainment rate coefficients stayed consistently negative
+across models, although in Model B, it became statistically insignificant. 
+Additionally, other coefficients also remained similar in magnitude, indicating 
+that the use of interpolated values did not meaningfully distort the 
+relationship with the target variable. This was further supported by the fact that 
+the dummy variable for 
+interpolated values in Model C was not statistically significant, suggesting no systematic 
+differences in observations, where the education rate was imputed.
+However, Model B showed shifts in significance for other variables, 
+such as defence spending's share of GDP and its annual change, 
+and the overall model lost
+statistical significance ($F(6,216)=2.0229$, $p=0.0638$).
 
 \renewcommand{\arraystretch}{1.2}
 
@@ -177,44 +184,45 @@ differences in observations, where the education rate was interpolated or filled
 \textbf{Term} & \textbf{Model A (full)} & \textbf{Model B (excl. filled)} & \textbf{Model C (full + dummy)} \\
 \midrule
 \multicolumn{4}{l}{\textit{Coefficient estimates}} \\
-Unemployment rate & $-0.0013, p=0.7758$ & $-0.0024, p=0.6276$ & $-0.0011, p=0.8205$ \\
-Secondary education attainment rate & $-0.0083, p=0.0001$ & $-0.0069, p=0.0013$ & $-0.0084, p<0.0001$ \\
-GDP per capita & $0.2376, p=0.0867$ & $0.1537, p=0.3107$ & $0.2878, p=0.0480$ \\
-Def. budget \% GDP & $0.0846, p=0.0053$ & $0.1003, p=0.0021$ & $0.0882, p=0.0038$ \\
-GDP per capita \% change & $-0.0009, p=0.6437$ & $-0.0009, p=0.6462$ & $-0.0014, p=0.4804$\\
-Def. budget \% GDP \% change & $-0.0013, p=0.0082$ & $-0.0017, p=0.0008$ & $-0.0013, p=0.0073$ \\
-Interpolation dummy & - & - & $-0.0299, p=0.2529$ \\
+Unemployment rate & $-0.0097, p=0.4007$ & $-0.0111, p=0.3499$ & $-0.0097, p=0.3975$ \\
+Secondary education attainment rate & $-0.0070, p=0.0408$ & $-0.0052, p=0.1290$ & $-0.0070, p=0.0417$ \\
+GDP per capita & $0.8725, p=0.0033$ & $0.8047, p=0.0066$ & $0.8719, p=0.0034$ \\
+Def. budget \% GDP & $0.0918, p=0.0442$ & $0.1058, p=0.0521$ & $0.0915, p=0.0438$ \\
+GDP per capita \% change & $-0.0073, p=0.0989$ & $-0.0072, p=0.1098$ & $-0.0072, p=0.1044$ \\
+Def. budget \% GDP \% change & $-0.0011, p=0.1599$ & $-0.0017, p=0.0321$ & $-0.0011, p=0.1592$ \\
+Interpolation dummy & - & - & $0.0049, p=0.8935$ \\
 \addlinespace
 \multicolumn{4}{l}{\textit{Model statistics}} \\
 Number of observations & 285 & 262 & 285 \\
-$R^2$ (within) & 0.1200 & 0.1135 & 0.1247 \\
-F-statistic (robust) & $F(6,247)=5.6143, p<0.001$ & $F(6,224)=4.7800, p<0.001$ & $F(7,246)=5.0059, p<0.001$ \\
+$R^2$ & 0.2038 & 0.2000 & 0.2039 \\
+F-statistic (robust) & $F(6,239)=2.9221, p=0.0091$ & $F(6,216)=2.0229, p=0.0638$ & $F(7,238)=3.7099, p=0.0008$ \\
 \bottomrule
 \end{tabularx}
 }
 \label{tab:sensitivity}
 \end{table}
 
-Based on these results, Model C with full data, including interpolated and filled values, and a dummy 
-variable flagging imputed values was chosen
+Based on these results, Model C with full data, including interpolated and filled values, 
+and a dummy for flagging imputed values was chosen
 as the preferred regression model. While imputed data could introduce noise or subtle bias
 into regression estimates, this did not appear to be the case this time, as the interpolation dummy 
 variable was found to be statistically insignificant. 
 Nevertheless, Model C was adopted as it retains the full sample size while explicitly controlling 
 for data quality variation, thereby increasing the robustness of the model.
-Additionally, Model C had a marginally larger within-country 
-$R^2$, than Model A (0.1247 vs 0.1200), meaning it explained the variation within countries 
-slightly better, which again supported the decision to choose Model C.
+Furthermore, Model B, which excluded imputed data, was overall statistically insignificant,
+again supporting the choice of with the full sample and appropriate controls.
 
 \subsection{Final model}
 
 The summary of the final model is reported in Table~\ref{tab:model_summary}.
-The final fixed-effects regression model had a 0.1247 within-entity $R^2$, meaning it explained 
-approximately 12.47\% of within-country variation in the logarithm of active armed forces per capita.
-The robust/clustered F-statistic for the model was $F(7, 246)=2.3521, p=0.0242$, 
-showing joint significance of the independent variables.
-In other words, the model better explains the variation in the dependent variable than a model with 
-only country-specific intercepts and no independent variables. 
+The final fixed-effects regression model had a 0.2039 $R^2$, meaning it explained 
+approximately 20.39\% of the variation in the logarithm of active armed forces per capita 
+after accounting for fixed effects.
+The robust F-statistic for the model was $F(7, 238)=3.7099, p=0.0008$, 
+showing joint significance of the independent variables, while adjusting for potential 
+heteroskedasticity.
+In other words, after accounting for country and year fixed effects, 
+the included variables jointly have a significant effect on the dependent variable.
 
 \renewcommand{\arraystretch}{1.3}
 
@@ -232,28 +240,28 @@ only country-specific intercepts and no independent variables.
 \textbf{Time Periods} & 9 \\
 \textbf{Cov. Estimator} & Clustered \\
 \midrule
-\textbf{R-squared (Within)} & 0.1247 \\
-\textbf{Log-likelihood} & 259.79 \\
-\textbf{F-statistic (robust)} & 2.3521 \\
-\textbf{P-value (F-stat)} & 0.0242 \\
-\textbf{Distribution} & F(7, 246) \\
+\textbf{R-squared} & 0.2039 \\
+\textbf{Log-likelihood} & 274.78 \\
+\textbf{F-statistic (robust)} & 3.7099 \\
+\textbf{P-value (F-stat)} & 0.0008 \\
+\textbf{Distribution} & F(7, 238) \\
 \midrule
-\textbf{F-test for Poolability} & 70.146 \\
+\textbf{F-test for Poolability} & 60.604 \\
 \textbf{P-value} & 0.0000 \\
-\textbf{Distribution} & F(31, 246) \\
-\textbf{Included effects} & Entity \\
+\textbf{Distribution} & F(39, 238) \\
+\textbf{Included effects} & Entity, Time \\
 \bottomrule
 \end{tabularx}
 \end{threeparttable}
 \label{tab:model_summary}
-\end{table}
+\end{table} 
 
 Table~\ref{tab:final_model} reports the parameter estimates for the final model. 
-Unemployment rate proved to be statistically insignificant $(-0.0011, p=0.9039)$, 
+Unemployment rate proved to be statistically insignificant $(-0.0097, p=0.3975)$, 
 indicating that it may not substantially affect military labour supply in the sampled country and year subset.
-Secondary education attainment rate exhibited a significant, modest negative relationship $(-0.0084, p=0.0424)$ 
+Secondary education attainment rate exhibited a significant, modest negative relationship $(-0.0070, p=0.0417)$ 
 with the dependent variable, meaning for every 1 percentage point increase in secondary education 
-attainment rate, the active military size per capita decreased by approximately 0.84\%.
+attainment rate, the active military size per capita decreased by approximately 0.70\%.
 This negative relationship could be caused by multiple factors, for example, more educated individuals 
 may consider their opportunities better in the civilian sector, while it could also be that countries 
 with higher educational attainment rates have more technologically advanced armed forces, which require 
@@ -268,32 +276,34 @@ less manpower.
 \toprule
 \textbf{Variable} & \textbf{Coef.} & \textbf{Std. Err.} & \textbf{t-stat} & \textbf{p-value} & \textbf{CI Lower} & \textbf{CI Upper} \\
 \midrule
-Unemployment rate & -0.0011 & 0.0088 & -0.1208 & 0.9039 & -0.0185 & 0.0163 \\
-Secondary education attainment rate & -0.0084 & 0.0041 & -2.0404 & 0.0424 & -0.0165 & -0.0003 \\
-GDP per capita & 0.2878 & 0.2506 & 1.1484 & 0.2519 & -0.2058 & 0.7813 \\
-Def. budget \% GDP & 0.0882 & 0.0379 & 2.3250 & 0.0209 & 0.0135 & 0.1629 \\
-GDP per capita \% change & -0.0014 & 0.0016 & -0.8991 & 0.3695 & -0.0045 & 0.0017 \\
-Def. budget \% GDP \% change & -0.0013 & 0.0007 & -1.7632 & 0.0791 & -0.0027 & 0.0001 \\
-Education Dummy & -0.0299 & 0.0223 & -1.3412 & 0.1811 & -0.0739 & 0.0140 \\
+Unemployment rate & -0.0097 & 0.0115 & -0.8476 & 0.3975 & -0.0323 & 0.0129 \\
+Secondary education attainment rate & -0.0070 & 0.0034 & -2.0480 & 0.0417 & -0.0137 & -0.0003 \\
+GDP per capita & 0.8719 & 0.2950 & 2.9554 & 0.0034 & 0.2907 & 1.4532 \\
+Def. budget \% GDP & 0.0915 & 0.0451 & 2.0268 & 0.0438 & 0.0026 & 0.1804 \\
+GDP per capita \% change & -0.0072 & 0.0044 & -1.6302 & 0.1044 & -0.0160 & 0.0015 \\
+Def. budget \% GDP \% change & -0.0011 & 0.0008 & -1.4120 & 0.1592 & -0.0027 & 0.0004 \\
+Education Dummy & 0.0049 & 0.0368 & 0.1340 & 0.8935 & -0.0675 & 0.0774 \\
 \bottomrule
 \end{tabularx}
 \end{threeparttable}
 \label{tab:final_model}
 \end{table}
 
-The logarithm of GDP per capita had a positive, but insignificant relationship $(0.2878, p=0.2519)$ 
-with armed forces per capita. This could suggest that the state of the economy alone does not 
-systematically influence the size of a county's active military. Wealthier countries may also
-prioritize technology over manpower.
-The annual change in GDP per capita was also found to be 
-statistically insignificant $(-0.0014, p=0.3695)$,
+The logarithm of GDP per capita had a positive and significant relationship $(0.8719, p=0.0034)$ 
+with armed forces per capita, meaning a 1\% increase in GDP per capita was associated with 
+approximately a 0.87\% increase in active military size per capita. 
+This means that wealthier countries tend to have larger active militaries, which could 
+be due to their ability to invest more in the defence sector. Wealthier countries may also 
+want to maintain larger military presence to project power and influence globally.
+The annual change in GDP per capita was found to be 
+statistically insignificant $(-0.0072, p=0.1044)$,
 indicating that short-term economic changes might not influence active military personnel size. 
 
 Defence spending's share of GDP however, exhibited 
-a significant and positive relationship $(0.0882, p=0.0209)$, meaning for each percentage point increase in defence spending's 
-proportion of GDP, active military size per capita increased approximately 8.82\%.
+a significant and positive relationship $(0.0915, p=0.0438)$, meaning for each percentage point increase in defence spending's 
+proportion of GDP, active military size per capita increased approximately 9.15\%.
 The annual changes in defence spending's proportion of GDP proved to be an insignificant predictor
-of active armed forces numbers $(-0.0013, p=0.0791)$. 
+of active armed forces numbers $(-0.0011, p=0.1592)$. 
 These findings could indicate that a higher baseline proportion of defence 
 spending in GDP may signal long-term commitments to maintaining a large military, while short-term 
 changes in the proportion may not directly predict a change in active military personnel. It could 

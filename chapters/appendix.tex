@@ -1,23 +1,21 @@
 \chapter*{Appendix}
 
-\section*{Regression with time fixed effects}
-\label{appendix:twoway}
+\section*{Regression without time fixed effects}
 
-To verify the robustness of the main findings, a two-way fixed-effects model including 
-both entity and time effects was estimated. It is reported in Table~\ref{tab:twoway_summary} and
-Table~\ref{tab:twoway_model}.
-The main predictors remained statistically 
-significant, with the GDP per capita also becoming significant in this model. 
-The within R-squared decreased to a negative value, 
-likely due to the loss of degrees of freedom from the inclusion of time dummies.
-A negative within R-squared shows that the model explains less of the within-country variation 
-than a model with only intercepts and may reflect overfitting due to fixed effects saturation. 
+To verify the robustness of the main findings, a one-way fixed-effects model including 
+only entity effects was estimated. It is reported in Table~\ref{tab:oneway_summary} and
+Table~\ref{tab:oneway_model}.
+The other main predictors remained statistically 
+significant, while GDP per capita lost significance in this model. 
+The $R^2$ decreased to 0.1247, 
+meaning the model explains about 12.47\% of the within-country variation in 
+active armed forces per capita, which is less than the model with time fixed effects included.
 
 \renewcommand{\arraystretch}{1.3}
 
 % Model Summary Table
 \begin{table}[htbp]
-\caption{PanelOLS Estimation Summary}
+\caption{PanelOLS Estimation Summary of One-way Model}
 \centering
 \begin{threeparttable}
 \begin{tabularx}{\textwidth}{@{}lX@{}}
@@ -29,44 +27,43 @@ than a model with only intercepts and may reflect overfitting due to fixed effec
 \textbf{Time Periods} & 9 \\
 \textbf{Cov. Estimator} & Clustered \\
 \midrule
-\textbf{R-squared} & 0.2039 \\
-\textbf{R-squared (Within)} & -0.1623 \\
-\textbf{Log-likelihood} & 274.78 \\
-\textbf{F-statistic (robust)} & 3.7099 \\
-\textbf{P-value (F-stat)} & 0.0008 \\
-\textbf{Distribution} & F(7, 238) \\
+\textbf{R-squared} & 0.1247 \\
+\textbf{Log-likelihood} & 259.79 \\
+\textbf{F-statistic (robust)} & 2.3521 \\
+\textbf{P-value (F-stat)} & 0.0242 \\
+\textbf{Distribution} & F(7, 246) \\
 \midrule
-\textbf{F-test for Poolability} & 60.604 \\
+\textbf{F-test for Poolability} & 70.146 \\
 \textbf{P-value} & 0.0000 \\
-\textbf{Distribution} & F(39, 238) \\
-\textbf{Included effects} & Entity, Time \\
+\textbf{Distribution} & F(31, 246) \\
+\textbf{Included effects} & Entity \\
 \bottomrule
 \end{tabularx}
 \end{threeparttable}
-\label{tab:twoway_summary}
-\end{table} 
+\label{tab:oneway_summary}
+\end{table}
 
 \clearpage
 
 % Parameter Estimates Table
-\begin{table}[H]
-\caption{Parameter Estimates}
+\begin{table}[htbp]
+\caption{Parameter Estimates of One-way Model}
 \centering
 \begin{threeparttable}
 \begin{tabularx}{\textwidth}{@{}Xrrrrrr@{}}
 \toprule
 \textbf{Variable} & \textbf{Coef.} & \textbf{Std. Err.} & \textbf{t-stat} & \textbf{p-value} & \textbf{CI Lower} & \textbf{CI Upper} \\
 \midrule
-Unemployment rate & -0.0097 & 0.0115 & -0.8476 & 0.3975 & -0.0323 & 0.0129 \\
-Secondary education attainment rate & -0.0070 & 0.0034 & -2.0480 & 0.0417 & -0.0137 & -0.0003 \\
-GDP per capita & 0.8719 & 0.2950 & 2.9554 & 0.0034 & 0.2907 & 1.4532 \\
-Def. budget \% GDP & 0.0915 & 0.0451 & 2.0268 & 0.0438 & 0.0026 & 0.1804 \\
-GDP per capita \% change & -0.0072 & 0.0044 & -1.6302 & 0.1044 & -0.0160 & 0.0015 \\
-Def. budget \% GDP \% change & -0.0011 & 0.0008 & -1.4120 & 0.1592 & -0.0027 & 0.0004 \\
-Education Dummy & 0.0049 & 0.0368 & 0.1340 & 0.8935 & -0.0675 & 0.0774 \\
+Unemployment rate & -0.0011 & 0.0088 & -0.1208 & 0.9039 & -0.0185 & 0.0163 \\
+Secondary education attainment rate & -0.0084 & 0.0041 & -2.0404 & 0.0424 & -0.0165 & -0.0003 \\
+GDP per capita & 0.2878 & 0.2506 & 1.1484 & 0.2519 & -0.2058 & 0.7813 \\
+Def. budget \% GDP & 0.0882 & 0.0379 & 2.3250 & 0.0209 & 0.0135 & 0.1629 \\
+GDP per capita \% change & -0.0014 & 0.0016 & -0.8991 & 0.3695 & -0.0045 & 0.0017 \\
+Def. budget \% GDP \% change & -0.0013 & 0.0007 & -1.7632 & 0.0791 & -0.0027 & 0.0001 \\
+Education Dummy & -0.0299 & 0.0223 & -1.3412 & 0.1811 & -0.0739 & 0.0140 \\
 \bottomrule
 \end{tabularx}
 \end{threeparttable}
-\label{tab:twoway_model}
+\label{tab:oneway_model}
 \end{table}
 
