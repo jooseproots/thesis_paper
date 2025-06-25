@@ -104,21 +104,6 @@ which included all variables, and the second was a reduced model with defence bu
 per capita and its annual change excluded, as these variables had exhibited multicollinearity 
 with defence budget's proportion of GDP and its annual change.
 
-The full model explained a larger proportion of the within-country variance 
-$(R^2 = 0.2066\, \text{vs.} \,0.1200)$
-and included a statistically significant variable, defence spending per capita, which had a positive 
-relationship with the dependent variable. However, the multicollinearity between defence spending per 
-capita and defence spending's share of GDP could undermine the stability and interpretability 
-of the model. This was evidenced by the change in the sign of defence spending's percentage of GDP 
-coefficient from negative to positive. Defence spending's share of GDP was expected to exhibit 
-effects in the same direction as defence budget per capita, as they are derived from the same underlying 
-measure of defence budgets. The opposing signs in the full model and the change of direction in the 
-reduced model raised concerns of multicollinearity distorting the individual coefficient estimates.
-These concerns were further supported by the change in statistical significance of the annual change in defence budget's share of GDP, which was not significant in the full model, but became significant in 
-the reduced one.
-These inconsistencies supported the decision to remove the collinear variables and favour the reduced 
-one, which could be more stable and interpretable.
-
 \renewcommand{\arraystretch}{1.3}
 
 \begin{table}[ht]
@@ -151,6 +136,21 @@ F-statistic (robust) & $F(8,245)=7.97, p<0.001$ & $F(6,247)=5.61, p<0.001$ \\
 \label{tab:robustness}
 \end{table}
 
+The full model explained a larger proportion of the within-country variance 
+$(R^2 = 0.2066\, \text{vs.} \,0.1200)$
+and included a statistically significant variable, defence spending per capita, which had a positive 
+relationship with the dependent variable. However, the multicollinearity between defence spending per 
+capita and defence spending's share of GDP could undermine the stability and interpretability 
+of the model. This was evidenced by the change in the sign of defence spending's percentage of GDP 
+coefficient from negative to positive. Defence spending's share of GDP was expected to exhibit 
+effects in the same direction as defence budget per capita, as they are derived from the same underlying 
+measure of defence budgets. The opposing signs in the full model and the change of direction in the 
+reduced model raised concerns of multicollinearity distorting the individual coefficient estimates.
+These concerns were further supported by the change in statistical significance of the annual change in defence budget's share of GDP, which was not significant in the full model, but became significant in 
+the reduced one.
+These inconsistencies supported the decision to remove the collinear variables and favour the reduced 
+one, which could be more stable and interpretable.
+
 \subsection{Sensitivity analysis}
 
 Table ~\ref{tab:sensitivity} shows the
@@ -162,7 +162,7 @@ relationship with the target variable. This is supported by the fact that the du
 interpolated values in Model C is not statistically significant, suggesting no systematic 
 differences in observations, where the education rate was interpolated or filled in. 
 
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.2}
 
 \begin{table}[ht]
 \small
@@ -259,6 +259,28 @@ may consider their opportunities better in the civilian sector, while it could a
 with higher educational attainment rates have more technologically advanced armed forces, which require 
 less manpower.
 
+% Parameter Estimates Table
+\begin{table}[htbp]
+\caption{Parameter Estimates}
+\centering
+\begin{threeparttable}
+\begin{tabularx}{\textwidth}{@{}Xrrrrrr@{}}
+\toprule
+\textbf{Variable} & \textbf{Coef.} & \textbf{Std. Err.} & \textbf{t-stat} & \textbf{p-value} & \textbf{CI Lower} & \textbf{CI Upper} \\
+\midrule
+Unemployment rate & -0.0011 & 0.0088 & -0.1208 & 0.9039 & -0.0185 & 0.0163 \\
+Secondary education attainment rate & -0.0084 & 0.0041 & -2.0404 & 0.0424 & -0.0165 & -0.0003 \\
+GDP per capita & 0.2878 & 0.2506 & 1.1484 & 0.2519 & -0.2058 & 0.7813 \\
+Def. budget \% GDP & 0.0882 & 0.0379 & 2.3250 & 0.0209 & 0.0135 & 0.1629 \\
+GDP per capita \% change & -0.0014 & 0.0016 & -0.8991 & 0.3695 & -0.0045 & 0.0017 \\
+Def. budget \% GDP \% change & -0.0013 & 0.0007 & -1.7632 & 0.0791 & -0.0027 & 0.0001 \\
+Education Dummy & -0.0299 & 0.0223 & -1.3412 & 0.1811 & -0.0739 & 0.0140 \\
+\bottomrule
+\end{tabularx}
+\end{threeparttable}
+\label{tab:final_model}
+\end{table}
+
 The logarithm of GDP per capita had a positive, but insignificant relationship $(0.2878, p=0.2519)$ 
 with armed forces per capita. This could suggest that the state of the economy alone does not 
 systematically influence the size of a county's active military. Wealthier countries may also
@@ -283,25 +305,3 @@ with respect to population size. Assuming a stable population, the reported perc
 in active military size per capita can also be interpreted as approximate percentage changes in total 
 active military size. However, in cases where population can vary notably, the per capita measure provides 
 a more consistent comparison.
-
-% Parameter Estimates Table
-\begin{table}[htbp]
-\caption{Parameter Estimates}
-\centering
-\begin{threeparttable}
-\begin{tabularx}{\textwidth}{@{}Xrrrrrr@{}}
-\toprule
-\textbf{Variable} & \textbf{Coef.} & \textbf{Std. Err.} & \textbf{t-stat} & \textbf{p-value} & \textbf{CI Lower} & \textbf{CI Upper} \\
-\midrule
-Unemployment rate & -0.0011 & 0.0088 & -0.1208 & 0.9039 & -0.0185 & 0.0163 \\
-Secondary education attainment rate & -0.0084 & 0.0041 & -2.0404 & 0.0424 & -0.0165 & -0.0003 \\
-GDP per capita & 0.2878 & 0.2506 & 1.1484 & 0.2519 & -0.2058 & 0.7813 \\
-Def. budget \% GDP & 0.0882 & 0.0379 & 2.3250 & 0.0209 & 0.0135 & 0.1629 \\
-GDP per capita \% change & -0.0014 & 0.0016 & -0.8991 & 0.3695 & -0.0045 & 0.0017 \\
-Def. budget \% GDP \% change & -0.0013 & 0.0007 & -1.7632 & 0.0791 & -0.0027 & 0.0001 \\
-Education Dummy & -0.0299 & 0.0223 & -1.3412 & 0.1811 & -0.0739 & 0.0140 \\
-\bottomrule
-\end{tabularx}
-\end{threeparttable}
-\label{tab:final_model}
-\end{table}
