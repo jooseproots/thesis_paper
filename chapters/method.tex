@@ -115,9 +115,8 @@ Since the outliers appeared to be the result of natural variability, not data qu
 
 \section{Correlation analysis}
 
-This section describes the analytical approach used to investigate the relationships between socioeconomic variables and active military personnel.
-It describes how correlations and multicollinearity of the data were evaluated, how a sensitivity analysis for imputed values and a robustness check for multicollinear variables were conducted. 
-Finally, it is explained how the regression model was estimated.
+This section describes the approach used to evaluate correlations and multicollinearity among the socioeconomic variables before estimating the regression model.
+Specifically, it outlines how Pearson correlation coefficients and Variance Inflation Factors (VIFs) were used to assess the relationships and potential collinearity among the independent variables and how the data were transformed to be consistent with the fixed-effects framework.
 
 The correlation and multicollinearity analysis were performed on demeaned data, consistent with the fixed-effects regression. 
 The fixed-effects model relies on within-country variation over time by subtracting country-specific means, so the data were transformed similarly. 
@@ -143,6 +142,10 @@ where $R^2_i$ is the coefficient of determination obrained by regressing $X_i$ o
 It is typically considered that VIF values from 1 to 5 are moderate and mostly acceptable, while values over 5, or more conservatively 10, can be potentially problematic \parencite{obrien_caution_2007}.
 
 \section{Modelling}
+
+This section describes the core regression strategy used to estimate the relationships between socioeconomic variables and the number of active military personnel.
+It begins by motivating the use of a fixed-effects regression and outlines the base model specification.
+It then explains how country and year fixed effects were incorporated to control for unobserved heterogeneity and finally it presents how the robustness and sensitivity checks performed.
 
 Studies such as \textcite{asch_cash_2010}, \textcite{backstrom_are_2019} and \textcite{balcaen_unemployment_2025} have demonstrated the suitability of a fixed-effects regression model for analysing panel data in the context of military recruitment and retention, which informed the methodological choice of this thesis.
 The following equation was used to estimate the base model:
