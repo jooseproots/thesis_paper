@@ -2,40 +2,25 @@
 
 \section{Data preparation}
 
-The data preparation process involved several steps to create a clean and structured 
-dataset that could be used for analysis. The study combines military and socioeconomic 
-data for NATO countries across multiple years. Data was collected from various sources,
-transformed into a consistent format and merged into a single dataset.
+The data preparation process involved several steps to create a clean and structured dataset that could be used for analysis. 
+The study combines military and socioeconomic data for NATO countries across multiple years. 
+Data was collected from various sources, transformed into a consistent format and merged into a single dataset.
 
-First, the military personnel and defence 
-spending data were acquired from different issues of The Military Balance by the 
-\textcite{noauthor_military_balance_nodate} 
-as each issue contained data for a specific year. Data for active armed forces numbers, 
-defence spending per capita and defence spending's share of GDP were
-selected for NATO member countries from each table.
-In order to ensure that the data is comparable, the effect of inflation was removed 
-from defence spending per capita data by adjusting the values to 2015 USD using the Consumer Price 
-Index (CPI) of different years. The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
-The tables from different years were then merged into a single long-format table, where
-each row represented observations for a specific country in a specific year, as this format is 
-suitable for panel data analysis.
+First, the military personnel and defence spending data were acquired from different issues of The Military Balance by the \textcite{noauthor_military_balance_nodate} as each issue contained data for a specific year. 
+Data for active armed forces numbers, defence spending per capita and defence spending's share of GDP were selected for NATO member countries from each table.
+To ensure that the data is comparable, the effect of inflation was removed from defence spending per capita data by adjusting the values to 2015 USD using the Consumer Price Index (CPI) of different years. 
+The CPI data was sourced from \textcite{federal_reserve_bank_of_minneapolis_consumer_nodate}. 
+The tables from different years were then merged into a single long-format table, where each row represented observations for a specific country in a specific year, as this format is suitable for panel data analysis.
 
-Next, the unemployment rate, GDP per capita in constant 2015 USD, population and 
-secondary educational attainment data were collected from the open data provided by the
-\textcite{noauthor_world_bank_nodate}. Data was again filtered to include 
-only NATO countries from 2015 to 2023. 
-The educational attainment 
-data had missing values that were handled using linear interpolation to estimate missing values 
-based on neighbouring data, and backward/forward filling for data points at the start or end 
-of the series, which could not be interpolated. The tables were then also transformed into a long format, 
-so that they could be 
-merged with the military personnel and defence spending data.
+Next, the unemployment rate, GDP per capita in constant 2015 USD, population and secondary educational attainment data were collected from the open data provided by the \textcite{noauthor_world_bank_nodate}. 
+Data was again filtered to include only NATO countries from 2015 to 2023. 
+The educational attainment data had missing values that were handled using linear interpolation to estimate missing values based on neighbouring data, and backward/forward filling for data points at the start or end of the series, which could not be interpolated. 
+The tables were then also transformed into a long format, so that they could be merged with the military personnel and defence spending data.
 
-The military and economic data were then merged together into a complete dataset. 
+The military and economic data were then merged into a complete dataset. 
 The active armed forces per capita column was created by dividing the active armed forces by population numbers.
-Additional columns for annual changes in GDP per capita, defence spending per capita  
-and defence spending's share of GDP were calculated by finding their percentage changes from 
-the previous year's value. Table~\ref{tab:variables} summarizes the variables of the prepared dataset.
+Additional columns for annual changes in GDP per capita, defence spending per capita and defence spending's share of GDP were calculated by finding their percentage changes from the previous year's value. 
+Table~\ref{tab:variables} summarises the variables of the prepared dataset.
 
 \renewcommand{\arraystretch}{1.3}
 
@@ -67,20 +52,16 @@ Defence spending \% GDP \% change & Annual percentage change in defence spending
 \label{tab:variables}
 \end{table}
 
-Finally, a logarithmic transformation was applied to variables active armed forces per capita, GDP per capita 
-and defence spending per capita. These variables can have skewed distributions due to disproportionate influence 
-from larger countries. 
-Logging can mitigate this skewness, stabilise variance and allow for interpretation of the regression 
-coefficients in terms of elasticities. Other variables were not logarithmically transformed as they were 
-expressed as percentages; therefore, logging would make interpretation difficult and distort the scales.
+Finally, a logarithmic transformation was applied to variables active armed forces per capita, GDP per capita and defence spending per capita. 
+These variables can have skewed distributions due to disproportionate influence from larger countries. 
+Logging can mitigate this skewness, stabilise variance and allow for interpretation of the regression coefficients in terms of elasticities. 
+Other variables were not logarithmically transformed as they were expressed as percentages; therefore, logging would make interpretation difficult and distort the scales.
 
 \section{Data understanding}
 
 Table~\ref{tab:descriptive_stats} reports the descriptive statistics for the variables used.
-The logged dependent variable, armed forces per capita, showed relatively low variation with a standard 
-deviation of 0.44 and a range of values between -6.55 and -4.30, which could limit the explanatory 
-power of the regression model, however, the regression model might still provide insights into 
-smaller changes in active military size per capita.
+The logged dependent variable, armed forces per capita, showed relatively low variation with a standard deviation of 0.44 and a range of values between -6.55 and -4.30. 
+This could limit the explanatory power of the regression; however, the model might still provide insights into smaller changes in active military size per capita.
 
 \begin{table}[htbp]
 \caption{Descriptive statistics of variables}
@@ -109,84 +90,61 @@ smaller changes in active military size per capita.
 \label{tab:descriptive_stats}
 \end{table}
 
-Defence spending per capita, its annual change and the annual change in defence spending's 
-share of GDP however showed higher volatility, with standard deviations of 14.64, 18.73, and 
-16.39 respectively. These higher standard deviations could suggest heteroskedasticity. In addition 
-to that, in panel data settings, standard errors are often correlated within entities (in this case countries), 
-which means assuming independent standard errors could inflate t-statistics and potentially 
-overstate statistical significance in regressions. To account for this, a fixed-effects 
-regression could be estimated using standard errors clustered at the country level.
+Defence spending per capita, its annual change and the annual change in defence spending's share of GDP, however, showed higher volatility, with standard deviations of 14.64, 18.73, and 16.39, respectively. 
+These higher standard deviations could suggest heteroskedasticity. 
+In addition to that, in panel data settings, standard errors are often correlated within entities (in this case, countries), which means assuming independent standard errors could inflate t-statistics and potentially overstate statistical significance in regressions. 
+To account for this, a fixed-effects regression could be estimated using standard errors clustered at the country level.
 
-The use of imputed educational attainment values was also investigated. There were a total 
-of 23 interpolated or filled values across a total of 285 observations. No country had
-more than 2 imputed values in the timeframe. Given the small scale of imputed values, it was 
-unlikely that a strong bias would be introduced. Nevertheless, a sensitivity analysis should 
-be conducted to analyse the effect of imputation more in depth.
+The use of imputed educational attainment values was also investigated. 
+There were a total of 23 interpolated or filled values across a total of 285 observations. 
+No country had more than 2 imputed values in the timeframe. 
+Given the small scale of imputed values, it was unlikely that a strong bias would be introduced. Nevertheless, a sensitivity analysis should be conducted to analyse the effect of imputation more in depth.
 
-Outliers were identified using both Z-score and 
-Interquartile Range (IQR) methods, which are commonly used in literature for outlier 
-detection. The Z-score method calculates the distance of a data point from 
-the mean in terms of standard deviations, using the formula:
+Outliers were identified using both Z-score and Interquartile Range (IQR) methods, which are commonly used in literature for outlier detection. 
+The Z-score method calculates the distance of a data point from the mean in terms of standard deviations, using the formula:
 \begin{equation*}
     Z = \frac{X - \mu}{\sigma}
 \end{equation*}
 where X is the data point, $\mu$ is the sample mean and $\sigma$ is the sample standard deviation.
-A common threshold of $\pm 3$ was used to identify values in approximately the outer 0.3\% of normally 
-distributed data.
-The IQR method is non-parametric and less dependent on distributional assumptions. The outliers 
-were defined as values, which fall below $Q1 - 1.5 \cdot IQR$ or above $Q3 + 1.5 \cdot IQR$, where 
-$Q1$ and $Q3$ are the first and third quartiles, reported in Table~\ref{tab:descriptive_stats} as 
-25\% and 75\%, and $IQR = Q3 - Q1$. This approach helps identify skewed or non-normally distributed outliers.
-Comparing outliers to the complete dataset revealed no unrealistic 
-values. Since the outliers appeared to be the result of natural variability, not data 
-quality issues, they were not excluded from the dataset. \parencite{barnett_outliers_1994}
+A common threshold of $\pm 3$ was used to identify values in approximately the outer 0.3\% of normally distributed data.
+The IQR method is non-parametric and less dependent on distributional assumptions. 
+The outliers were defined as values, which fall below $Q1 - 1.5 \cdot IQR$ or above $Q3 + 1.5 \cdot IQR$, where $Q1$ and $Q3$ are the first and third quartiles, reported in Table~\ref{tab:descriptive_stats} as 25\% and 75\%, and $IQR = Q3 - Q1$. 
+This approach helps identify skewed or non-normally distributed outliers.
+Comparing outliers to the complete dataset revealed no unrealistic values. 
+Since the outliers appeared to be the result of natural variability, not data quality issues, they were not excluded from the dataset. \parencite{barnett_outliers_1994}
 
 \section{Correlation analysis}
 
-This section describes the analytical approach used to investigate the relationships between 
-socioeconomic variables and active military personnel size.
-It describes how correlations and multicollinearity of the data were evaluated, 
-how a sensitivity analysis for imputed values and a robustness check for multicollinear 
-variables were conducted. Finally, it is explained how the regression model was estimated.
+This section describes the analytical approach used to investigate the relationships between socioeconomic variables and active military personnel.
+It describes how correlations and multicollinearity of the data were evaluated, how a sensitivity analysis for imputed values and a robustness check for multicollinear variables were conducted. 
+Finally, it is explained how the regression model was estimated.
 
-The correlation and multicollinearity analysis were performed on demeaned data, consistent 
-with the fixed-effects regression. The fixed-effects model relies on within-country variation 
-over time by subtracting country-specific means, so the data were transformed similarly. For 
-each observation, the mean of the variable across all years of the corresponding country was 
-subtracted from the original value. This demeaning process makes the data comparable across 
-countries as the variables only reflect deviations from each country's average. 
+The correlation and multicollinearity analysis were performed on demeaned data, consistent with the fixed-effects regression. 
+The fixed-effects model relies on within-country variation over time by subtracting country-specific means, so the data were transformed similarly. 
+For each observation, the mean of the variable across all years of the corresponding country was subtracted from the original value. 
+This demeaning process makes the data comparable across countries as the variables only reflect deviations from each country's average. 
 
-The correlation analysis involved calculating the Pearson correlation coefficient for each 
-of the variables, resulting in a correlation matrix, which can be used to assess the 
-direction and strength of bivariate relationships. 
-The Pearson coefficient, denoted by $r$, is 
-defined as:
+The correlation analysis involved calculating the Pearson correlation coefficient for each of the variables, resulting in a correlation matrix, which can be used to assess the direction and strength of bivariate relationships.
+The Pearson coefficient, denoted by $r$, is defined as:
 \begin{equation*}
     r_{xy} = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \sum(y_i - \bar{y})^2}}
 \end{equation*}
-where $x_i$ and $y_i$ are observations of variables $X$ and $Y$, and $\bar{x}$, $\bar{y}$ are their 
-sample means. The coefficient values range from -1 to 1, where absolute values close to 1 indicate 
-strong relationships and values near 0 suggest weak or no correlations \parencite{cohen_bivariate_2003}. 
+where $x_i$ and $y_i$ are observations of variables $X$ and $Y$, and $\bar{x}$, $\bar{y}$ are their sample means. 
+The coefficient values range from -1 to 1, where absolute values close to 1 indicate strong relationships and values near 0 suggest weak or no correlations \parencite{cohen_bivariate_2003}. 
 
-Variance Inflation Factors (VIF) were calculated for the independent variables to 
-assess the potential presence of multicollinearity. VIFs indicate how much the variance
-of a regression coefficient is inflated due to relationships with other predictors. Multicollinearity 
-can make estimates unstable and cause interpretability problems. The VIF for 
-a variable $X_i$ is calculated as:
+Variance Inflation Factors (VIF) were calculated for the independent variables to assess the potential presence of multicollinearity. 
+VIFs indicate how much the variance of a regression coefficient is inflated due to relationships with other predictors. 
+Multicollinearity can make estimates unstable and cause interpretability problems. 
+The VIF for a variable $X_i$ is calculated as:
 \begin{equation*}
     VIF_i = \frac{1}{1-R^2_i}
 \end{equation*}
-where $R^2_i$ is the coefficient of determination obrained by regressing $X_i$ on all other independent
-variables. It is typically considered, that VIF values from 1 to 5 are
-moderate and mostly acceptable, while values over 5, or more conservatively 10, 
-can be potentially problematic \parencite{obrien_caution_2007}.
+where $R^2_i$ is the coefficient of determination obrained by regressing $X_i$ on all other independent variables. 
+It is typically considered that VIF values from 1 to 5 are moderate and mostly acceptable, while values over 5, or more conservatively 10, can be potentially problematic \parencite{obrien_caution_2007}.
 
 \section{Modelling}
 
-Studies such as \textcite{asch_cash_2010}, \textcite{backstrom_are_2019} and 
-\textcite{balcaen_unemployment_2025} have demonstrated the suitability of a fixed-effects 
-regression model for analysing panel data in the context of military recruitment and retention, 
-which informed the methodolical choice of this thesis.
+Studies such as \textcite{asch_cash_2010}, \textcite{backstrom_are_2019} and \textcite{balcaen_unemployment_2025} have demonstrated the suitability of a fixed-effects regression model for analysing panel data in the context of military recruitment and retention, which informed the methodological choice of this thesis.
 The following equation was used to estimate the base model:
 \begin{align*}
 log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it} 
@@ -199,44 +157,27 @@ log(ArmedForces_{it}) &= \beta_1 \cdot Unemployment_{it}
 + \beta_8 \cdot \Delta DefSpending\%GDP_{it} \\
 &\quad + \alpha_i + \gamma_t + \varepsilon_{it}
 \end{align*}
-where $i$ denotes the country, $t$ the time, $\Delta$ the annual change,
-$a_i$ is the country-specific fixed effect and $\gamma_t$ is the year fixed effect.
+where $i$ denotes the country, $t$ the time, $\Delta$ the annual change, $a_i$ is the country-specific fixed effect and $\gamma_t$ is the year fixed effect.
 
-The regression analysis used a fixed-effects panel regression model to control for time-invariant 
-heterogeneity across countries. This meant that it was not 
-necessary to use the demeaned data anymore, 
-because the model already took differences between entities into account.
-The regression model used country fixed effects to isolate the within-country variation over time, 
-enabling more accurate 
-estimation of the conditional effects of economic factors on military personnel levels.
-In other words, by introducing country fixed effects, the model was estimated on changes within 
-countries, rather than between countries \parencite{backstrom_are_2019}.
+The regression analysis used a fixed-effects panel regression model to control for time-invariant heterogeneity across countries. 
+This meant that it was not necessary to use the demeaned data anymore, because the model already took differences between entities into account.
+The regression model used country fixed effects to isolate the within-country variation over time, enabling more accurate estimation of the conditional effects of economic factors on military personnel levels.
+In other words, by introducing country fixed effects, the model was estimated on changes within countries, rather than between countries \parencite{backstrom_are_2019}.
 
-Time fixed effects were also included in the model to control for unobserved heterogeneity
-over time. Given global shocks, such as the COVID-19 pandemic and Russia's invasion of 
-Ukraine, which could have affected all countries similarly, year fixed effects were 
-necessary to avoid omitted variable bias and eliminate aggregate trends in the data \parencite{backstrom_are_2019}.
-For comparison, a model with only country fixed effects and no time fixed effects
-is reported in Table~\ref{tab:oneway_summary} and Table~\ref{tab:oneway_model} in 
-the \textit{Appendix}.
+Time fixed effects were also included in the model to control for unobserved heterogeneity over time. 
+Given global shocks, such as the COVID-19 pandemic and Russia's invasion of Ukraine, which could have affected all countries similarly, year fixed effects were necessary to avoid omitted variable bias and eliminate aggregate trends in the data \parencite{backstrom_are_2019}.
+For comparison, a model with only country fixed effects and no time fixed effects is reported in Table~\ref{tab:oneway_summary} and Table~\ref{tab:oneway_model} in the \textit{Appendix}.
 It can be used to help assess the impact of including time fixed effects.
 
-The final fixed-effects regression model used clustered country-level standard errors to 
-account for potential within-country correlation of error terms and heteroskedasticity across 
-countries. In panel data, observations from the same entity are often not independent, which 
-violates classical OLS assumptions. Clustering allows for arbitrary correlation within 
-countries, ensuring a more robust and conservative model. While common trends may 
-affect all countries in a given year, clustering at the time-level was not used, as 
-the data has a limited number of time periods, which could lead to unstable clustering 
+The regression models used clustered country-level standard errors to account for potential within-country correlation of error terms and heteroskedasticity across countries. 
+In panel data, observations from the same entity are often not independent, which violates classical OLS assumptions. 
+Clustering allows for arbitrary correlation within countries, ensuring a more robust and conservative model. 
+While common trends may affect all countries in a given year, clustering at the time-level was not used, as the data has a limited number of time periods, which could lead to unstable clustering 
 or an overly conservative model.
 
 A robustness check and a sensitivity analysis were conducted to further specify the model.
-The robustness check included estimating two models, one with full variables and one with 
-reduced variables, based on the results of the correlation analysis. The models were 
-compared to assess the impact of removing multicollinear variables.
-The sensitivty analysis was used determine whether to include interpolated and filled educational 
-attainment data in the regression model. Three regression models were created: Model A with 
-complete data, including observations with interpolated educational attainment values, Model B 
-that excluded rows with interpolated and filled values, and Model C with complete data and an additional 
-dummy variable indicating whether the education data was interpolated or not. The models 
-were again compared to choose the most appropriate specification.
+The robustness check included estimating two models, one with full variables and one with reduced variables, based on the results of the correlation analysis. 
+The models were compared to assess the impact of removing multicollinear variables.
+The sensitivity analysis was used to determine whether to include interpolated and filled educational attainment data in the regression model. 
+Three regression models were created: Model A with complete data, including observations with interpolated educational attainment values, Model B that excluded rows with interpolated and filled values, and Model C with complete data and an additional dummy variable indicating whether the education data was interpolated or not. 
+The models were again compared to choose the most appropriate specification.
