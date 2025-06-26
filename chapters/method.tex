@@ -31,14 +31,7 @@ of the series, which could not be interpolated. The tables were then also transf
 so that they could be 
 merged with the military personnel and defence spending data.
 
-A logarithmic transformation was applied to variables active armed forces per capita, GDP per capita 
-and defence spending per capita. These variables can have skewed distributions due to disproportionate influence 
-from larger countries. 
-Logging can mitigate this skewness, stabilise variance and allow for interpretation of the regression 
-coefficients in terms of elasticities. Other variables were not logarithmically transformed as they were 
-expressed as percentages; therefore, logging would make interpretation difficult and distort the scales.
-
-Finally, the military and economic data tables were merged into a complete dataset. 
+The military and economic data were then merged together into a complete dataset. 
 The active armed forces per capita column was created by dividing the active armed forces by population numbers.
 Additional columns for annual changes in GDP per capita, defence spending per capita  
 and defence spending's share of GDP were calculated by finding their percentage changes from 
@@ -64,15 +57,22 @@ Unemployment rate & National unemployment rate & World Bank & \% (0-100) & none 
 Secondary education rate & Proportion of population (25+) with secondary education & World Bank & \% (0-100) & none \\
 GDP per capita & Gross Domestic Product per capita & World Bank & 2015 USD & log() \\
 Defence spending per capita & A country's defence expenditure divided by population & Military Balance & 2015 USD & log() \\
-Defence spending \% of GDP & Defence expenditure as a share of GDP & Military Balance & \% & none \\
+Defence spending \% of GDP & Defence spending's share of GDP & Military Balance & \% & none \\
 GDP per capita \% change & Annual percentage change in GDP per capita & World Bank (own calculation) & \% & none \\
 Defence spending per capita \% change & Annual percentage change in defence spending per capita & Military Balance (own calculation) & \% & none \\
-Defence spending \% GDP \% change & Annual percentage change in defence spending as \% of GDP & Military Balance (own calculation) & \% & none \\
+Defence spending \% GDP \% change & Annual percentage change in defence spending's share of GDP & Military Balance (own calculation) & \% & none \\
 \bottomrule
 \end{tabularx}
 }
 \label{tab:variables}
 \end{table}
+
+Finally, a logarithmic transformation was applied to variables active armed forces per capita, GDP per capita 
+and defence spending per capita. These variables can have skewed distributions due to disproportionate influence 
+from larger countries. 
+Logging can mitigate this skewness, stabilise variance and allow for interpretation of the regression 
+coefficients in terms of elasticities. Other variables were not logarithmically transformed as they were 
+expressed as percentages; therefore, logging would make interpretation difficult and distort the scales.
 
 \section{Data understanding}
 
@@ -89,13 +89,13 @@ smaller changes in active military size per capita.
 \toprule
  & \rotatebox{90}{\parbox{2.5cm}{Armed Forces per cap.}} 
  & \rotatebox{90}{\parbox{2.5cm}{GDP per cap.}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget per cap.}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. spend. per cap.}} 
  & \rotatebox{90}{\parbox{2.5cm}{Unemploy-\\ment rate}} 
  & \rotatebox{90}{\parbox{2.5cm}{Secondary education rate}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget \% GDP}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. spend. \% GDP}} 
  & \rotatebox{90}{\parbox{2.5cm}{GDP per cap. \% change}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget per cap. \% change}} 
- & \rotatebox{90}{\parbox{2.5cm}{Def. budget \% GDP \% change}} \\
+ & \rotatebox{90}{\parbox{2.5cm}{Def. spend. per cap. \% change}} 
+ & \rotatebox{90}{\parbox{2.5cm}{Def. spend. \% GDP \% change}} \\
 \midrule
 \textbf{mean} & -5.71 & 7.86 & 74.50 & 10.03 & 5.71 & 1.61 & 2.18 & 4.82 & 4.57 \\
 \textbf{std} & 0.44 & 4.58 & 14.64 & 0.76 & 0.81 & 0.66 & 3.67 & 18.73 & 16.39 \\
@@ -181,7 +181,7 @@ variables. It is typically considered, that VIF values from 1 to 5 are
 moderate and mostly acceptable, while values over 5, or more conservatively 10, 
 can be potentially problematic \parencite{obrien_caution_2007}.
 
-\section{Regression}
+\section{Modelling}
 
 Studies such as \textcite{asch_cash_2010}, \textcite{backstrom_are_2019} and 
 \textcite{balcaen_unemployment_2025} have demonstrated the suitability of a fixed-effects 

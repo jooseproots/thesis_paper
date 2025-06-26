@@ -2,6 +2,8 @@
 
 \section{Correlation analysis}
 
+\subsection{Bivariate correlations}
+
 \begin{figure}[htbp]
     \caption{Correlation matrix}
     \centering
@@ -18,8 +20,11 @@ change (-0.11). These findings suggest that military size may grow as a country'
 and defence spending rises, while higher unemployment and education attainment rates may be related 
 to reductions in military personnel.
 
-Notable strong correlations of independent variables were found to be between defence expenditure per capita and 
-defence expenditure as a proportion of GDP (0.85), and between their annual changes (0.80). 
+GDP per capita and unemployment rate exhibited a moderate negative correlation (-0.62), 
+which could indicate that a stronger economy is associated with better labour market conditions. 
+Even stronger correlations were found to be between defence 
+expenditure per capita and 
+defence expenditure's proportion of GDP (0.85), and between their annual changes (0.80). 
 This was unsurprising given that these variables are derived from defence spending. 
 However, such large correlations may indicate multicollinearity, which could 
 bias regression estimates and inflate standard errors. This meant that multicollinearity should be 
@@ -121,11 +126,11 @@ with defence budget's proportion of GDP and its annual change.
 Unemployment rate & $-0.0108, p=0.3263$ & $-0.0097, p=0.4007$ \\
 Secondary education attainment rate & $-0.0062, p=0.0477$ & $-0.0070, p=0.0408$ \\
 GDP per capita & $0.3754, p=0.1189$ & $0.8725, p=0.0033$ \\
-Def. budget per capita & $0.3635, p=0.0003$ & - \\
-Def. budget \% GDP & $-0.0984, p=0.0898$ & $0.0918, p=0.0442$ \\
+Def. spend. per capita & $0.3635, p=0.0003$ & - \\
+Def. spend. \% GDP & $-0.0984, p=0.0898$ & $0.0918, p=0.0442$ \\
 GDP per capita \% change & $-0.0032, p=0.4352$ & $-0.0073, p=0.0989$ \\
-Def. budget per capita \% change & $0.0007, p=0.5899$ & - \\
-Def. budget \% GDP \% change & $-0.0019, p=0.1055$ & $-0.0011, p=0.1599$ \\
+Def. spend. per capita \% change & $0.0007, p=0.5899$ & - \\
+Def. spend. \% GDP \% change & $-0.0019, p=0.1055$ & $-0.0011, p=0.1599$ \\
 \addlinespace
 \multicolumn{3}{l}{\textit{Model statistics}} \\
 $R^2$ & 0.2820 & 0.2038 \\
@@ -187,9 +192,9 @@ statistical significance ($F(6,216)=2.0229$, $p=0.0638$).
 Unemployment rate & $-0.0097, p=0.4007$ & $-0.0111, p=0.3499$ & $-0.0097, p=0.3975$ \\
 Secondary education attainment rate & $-0.0070, p=0.0408$ & $-0.0052, p=0.1290$ & $-0.0070, p=0.0417$ \\
 GDP per capita & $0.8725, p=0.0033$ & $0.8047, p=0.0066$ & $0.8719, p=0.0034$ \\
-Def. budget \% GDP & $0.0918, p=0.0442$ & $0.1058, p=0.0521$ & $0.0915, p=0.0438$ \\
+Def. spend. \% GDP & $0.0918, p=0.0442$ & $0.1058, p=0.0521$ & $0.0915, p=0.0438$ \\
 GDP per capita \% change & $-0.0073, p=0.0989$ & $-0.0072, p=0.1098$ & $-0.0072, p=0.1044$ \\
-Def. budget \% GDP \% change & $-0.0011, p=0.1599$ & $-0.0017, p=0.0321$ & $-0.0011, p=0.1592$ \\
+Def. spend. \% GDP \% change & $-0.0011, p=0.1599$ & $-0.0017, p=0.0321$ & $-0.0011, p=0.1592$ \\
 Interpolation dummy & - & - & $0.0049, p=0.8935$ \\
 \addlinespace
 \multicolumn{4}{l}{\textit{Model statistics}} \\
@@ -282,9 +287,9 @@ less manpower.
 Unemployment rate & -0.0097 & 0.0115 & -0.8476 & 0.3975 & -0.0323 & 0.0129 \\
 Secondary education attainment rate & -0.0070 & 0.0034 & -2.0480 & 0.0417 & -0.0137 & -0.0003 \\
 GDP per capita & 0.8719 & 0.2950 & 2.9554 & 0.0034 & 0.2907 & 1.4532 \\
-Def. budget \% GDP & 0.0915 & 0.0451 & 2.0268 & 0.0438 & 0.0026 & 0.1804 \\
+Def. spend. \% GDP & 0.0915 & 0.0451 & 2.0268 & 0.0438 & 0.0026 & 0.1804 \\
 GDP per capita \% change & -0.0072 & 0.0044 & -1.6302 & 0.1044 & -0.0160 & 0.0015 \\
-Def. budget \% GDP \% change & -0.0011 & 0.0008 & -1.4120 & 0.1592 & -0.0027 & 0.0004 \\
+Def. spend. \% GDP \% change & -0.0011 & 0.0008 & -1.4120 & 0.1592 & -0.0027 & 0.0004 \\
 Education Dummy & 0.0049 & 0.0368 & 0.1340 & 0.8935 & -0.0675 & 0.0774 \\
 \bottomrule
 \end{tabularx}
